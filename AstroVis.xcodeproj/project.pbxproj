@@ -9,6 +9,22 @@
 /* Begin PBXBuildFile section */
 		0ED973A31610C8B5000E4490 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973A21610C8B5000E4490 /* main.cpp */; };
 		0ED973A51610C8B5000E4490 /* AstroVis.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0ED973A41610C8B5000E4490 /* AstroVis.1 */; };
+		0ED973B01610C974000E4490 /* TransferFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973AF1610C974000E4490 /* TransferFunction.cpp */; };
+		0ED973B31610C9CD000E4490 /* Trapez.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973B21610C9CD000E4490 /* Trapez.cpp */; };
+		0ED973B61610CA00000E4490 /* CMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973B51610CA00000E4490 /* CMatrix.cpp */; };
+		0ED973B91610CA28000E4490 /* CPosition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973B81610CA28000E4490 /* CPosition.cpp */; };
+		0ED973BC1610CA54000E4490 /* CQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973BB1610CA54000E4490 /* CQuaternion.cpp */; };
+		0ED973BF1610CA7B000E4490 /* CVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973BE1610CA7B000E4490 /* CVector.cpp */; };
+		0ED973C21610CAA5000E4490 /* ArcBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973C11610CAA5000E4490 /* ArcBall.cpp */; };
+		0ED973C51610CACA000E4490 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973C41610CACA000E4490 /* Camera.cpp */; };
+		0ED973C81610CAF8000E4490 /* GlutCgWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973C71610CAF8000E4490 /* GlutCgWindow.cpp */; };
+		0ED973CB1610CB26000E4490 /* GlutWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973CA1610CB26000E4490 /* GlutWindow.cpp */; };
+		0ED973CE1610CB49000E4490 /* mathutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973CD1610CB49000E4490 /* mathutil.cpp */; };
+		0ED973D21610CB8A000E4490 /* SimpleSlicerWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973D11610CB8A000E4490 /* SimpleSlicerWindow.cpp */; };
+		0ED973D71610CCC2000E4490 /* Cg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED973D61610CCC2000E4490 /* Cg.framework */; };
+		0ED973D91610CCCB000E4490 /* GLUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED973D81610CCCA000E4490 /* GLUI.framework */; };
+		0ED973DB1610CCD0000E4490 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED973DA1610CCD0000E4490 /* GLUT.framework */; };
+		0ED973DD1610CCE6000E4490 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED973DC1610CCE5000E4490 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +44,37 @@
 		0ED9739E1610C8B5000E4490 /* AstroVis */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AstroVis; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED973A21610C8B5000E4490 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0ED973A41610C8B5000E4490 /* AstroVis.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AstroVis.1; sourceTree = "<group>"; };
+		0ED973AF1610C974000E4490 /* TransferFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransferFunction.cpp; sourceTree = "<group>"; };
+		0ED973B11610C99C000E4490 /* TransferFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferFunction.h; sourceTree = "<group>"; };
+		0ED973B21610C9CD000E4490 /* Trapez.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trapez.cpp; sourceTree = "<group>"; };
+		0ED973B41610C9E2000E4490 /* Trapez.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trapez.h; sourceTree = "<group>"; };
+		0ED973B51610CA00000E4490 /* CMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMatrix.cpp; sourceTree = "<group>"; };
+		0ED973B71610CA13000E4490 /* CMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMatrix.h; sourceTree = "<group>"; };
+		0ED973B81610CA28000E4490 /* CPosition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPosition.cpp; sourceTree = "<group>"; };
+		0ED973BA1610CA3C000E4490 /* CPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPosition.h; sourceTree = "<group>"; };
+		0ED973BB1610CA54000E4490 /* CQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CQuaternion.cpp; sourceTree = "<group>"; };
+		0ED973BD1610CA68000E4490 /* CQuaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQuaternion.h; sourceTree = "<group>"; };
+		0ED973BE1610CA7B000E4490 /* CVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVector.cpp; sourceTree = "<group>"; };
+		0ED973C01610CA8F000E4490 /* CVector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVector.h; sourceTree = "<group>"; };
+		0ED973C11610CAA5000E4490 /* ArcBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArcBall.cpp; sourceTree = "<group>"; };
+		0ED973C31610CAB7000E4490 /* ArcBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArcBall.h; sourceTree = "<group>"; };
+		0ED973C41610CACA000E4490 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		0ED973C61610CADB000E4490 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		0ED973C71610CAF8000E4490 /* GlutCgWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlutCgWindow.cpp; sourceTree = "<group>"; };
+		0ED973C91610CB0D000E4490 /* GlutCgWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlutCgWindow.h; sourceTree = "<group>"; };
+		0ED973CA1610CB26000E4490 /* GlutWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlutWindow.cpp; sourceTree = "<group>"; };
+		0ED973CC1610CB37000E4490 /* GlutWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlutWindow.h; sourceTree = "<group>"; };
+		0ED973CD1610CB49000E4490 /* mathutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mathutil.cpp; sourceTree = "<group>"; };
+		0ED973CF1610CB5A000E4490 /* mathutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mathutil.h; sourceTree = "<group>"; };
+		0ED973D01610CB6E000E4490 /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		0ED973D11610CB8A000E4490 /* SimpleSlicerWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleSlicerWindow.cpp; sourceTree = "<group>"; };
+		0ED973D31610CB9D000E4490 /* SimpleSlicerWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleSlicerWindow.h; sourceTree = "<group>"; };
+		0ED973D41610CBB2000E4490 /* globaldefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = globaldefs.h; sourceTree = "<group>"; };
+		0ED973D51610CBE1000E4490 /* gluiVars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gluiVars.h; sourceTree = "<group>"; };
+		0ED973D61610CCC2000E4490 /* Cg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cg.framework; path = Library/Frameworks/Cg.framework; sourceTree = SDKROOT; };
+		0ED973D81610CCCA000E4490 /* GLUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUI.framework; path = Library/Frameworks/GLUI.framework; sourceTree = SDKROOT; };
+		0ED973DA1610CCD0000E4490 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		0ED973DC1610CCE5000E4490 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ED973DD1610CCE6000E4490 /* OpenGL.framework in Frameworks */,
+				0ED973DB1610CCD0000E4490 /* GLUT.framework in Frameworks */,
+				0ED973D91610CCCB000E4490 /* GLUI.framework in Frameworks */,
+				0ED973D71610CCC2000E4490 /* Cg.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +95,10 @@
 		0ED973931610C8B5000E4490 = {
 			isa = PBXGroup;
 			children = (
+				0ED973DC1610CCE5000E4490 /* OpenGL.framework */,
+				0ED973DA1610CCD0000E4490 /* GLUT.framework */,
+				0ED973D81610CCCA000E4490 /* GLUI.framework */,
+				0ED973D61610CCC2000E4490 /* Cg.framework */,
 				0ED973A11610C8B5000E4490 /* AstroVis */,
 				0ED9739F1610C8B5000E4490 /* Products */,
 			);
@@ -60,10 +115,69 @@
 		0ED973A11610C8B5000E4490 /* AstroVis */ = {
 			isa = PBXGroup;
 			children = (
-				0ED973A21610C8B5000E4490 /* main.cpp */,
+				0ED973AE1610C948000E4490 /* transfunc */,
+				0ED973AD1610C940000E4490 /* mathutil */,
+				0ED973AC1610C93A000E4490 /* core */,
+				0ED973AB1610C92D000E4490 /* app */,
 				0ED973A41610C8B5000E4490 /* AstroVis.1 */,
 			);
 			path = AstroVis;
+			sourceTree = "<group>";
+		};
+		0ED973AB1610C92D000E4490 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				0ED973A21610C8B5000E4490 /* main.cpp */,
+				0ED973D11610CB8A000E4490 /* SimpleSlicerWindow.cpp */,
+				0ED973D31610CB9D000E4490 /* SimpleSlicerWindow.h */,
+				0ED973D41610CBB2000E4490 /* globaldefs.h */,
+				0ED973D51610CBE1000E4490 /* gluiVars.h */,
+			);
+			name = app;
+			sourceTree = "<group>";
+		};
+		0ED973AC1610C93A000E4490 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				0ED973C11610CAA5000E4490 /* ArcBall.cpp */,
+				0ED973C31610CAB7000E4490 /* ArcBall.h */,
+				0ED973C41610CACA000E4490 /* Camera.cpp */,
+				0ED973C61610CADB000E4490 /* Camera.h */,
+				0ED973C71610CAF8000E4490 /* GlutCgWindow.cpp */,
+				0ED973C91610CB0D000E4490 /* GlutCgWindow.h */,
+				0ED973CA1610CB26000E4490 /* GlutWindow.cpp */,
+				0ED973CC1610CB37000E4490 /* GlutWindow.h */,
+				0ED973CD1610CB49000E4490 /* mathutil.cpp */,
+				0ED973CF1610CB5A000E4490 /* mathutil.h */,
+				0ED973D01610CB6E000E4490 /* global.h */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
+		0ED973AD1610C940000E4490 /* mathutil */ = {
+			isa = PBXGroup;
+			children = (
+				0ED973B51610CA00000E4490 /* CMatrix.cpp */,
+				0ED973B71610CA13000E4490 /* CMatrix.h */,
+				0ED973B81610CA28000E4490 /* CPosition.cpp */,
+				0ED973BA1610CA3C000E4490 /* CPosition.h */,
+				0ED973BB1610CA54000E4490 /* CQuaternion.cpp */,
+				0ED973BD1610CA68000E4490 /* CQuaternion.h */,
+				0ED973BE1610CA7B000E4490 /* CVector.cpp */,
+				0ED973C01610CA8F000E4490 /* CVector.h */,
+			);
+			name = mathutil;
+			sourceTree = "<group>";
+		};
+		0ED973AE1610C948000E4490 /* transfunc */ = {
+			isa = PBXGroup;
+			children = (
+				0ED973AF1610C974000E4490 /* TransferFunction.cpp */,
+				0ED973B11610C99C000E4490 /* TransferFunction.h */,
+				0ED973B21610C9CD000E4490 /* Trapez.cpp */,
+				0ED973B41610C9E2000E4490 /* Trapez.h */,
+			);
+			name = transfunc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,6 +231,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ED973A31610C8B5000E4490 /* main.cpp in Sources */,
+				0ED973B01610C974000E4490 /* TransferFunction.cpp in Sources */,
+				0ED973B31610C9CD000E4490 /* Trapez.cpp in Sources */,
+				0ED973B61610CA00000E4490 /* CMatrix.cpp in Sources */,
+				0ED973B91610CA28000E4490 /* CPosition.cpp in Sources */,
+				0ED973BC1610CA54000E4490 /* CQuaternion.cpp in Sources */,
+				0ED973BF1610CA7B000E4490 /* CVector.cpp in Sources */,
+				0ED973C21610CAA5000E4490 /* ArcBall.cpp in Sources */,
+				0ED973C51610CACA000E4490 /* Camera.cpp in Sources */,
+				0ED973C81610CAF8000E4490 /* GlutCgWindow.cpp in Sources */,
+				0ED973CB1610CB26000E4490 /* GlutWindow.cpp in Sources */,
+				0ED973CE1610CB49000E4490 /* mathutil.cpp in Sources */,
+				0ED973D21610CB8A000E4490 /* SimpleSlicerWindow.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
