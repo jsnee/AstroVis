@@ -1,0 +1,208 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0ED973A31610C8B5000E4490 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973A21610C8B5000E4490 /* main.cpp */; };
+		0ED973A51610C8B5000E4490 /* AstroVis.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0ED973A41610C8B5000E4490 /* AstroVis.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0ED9739C1610C8B5000E4490 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				0ED973A51610C8B5000E4490 /* AstroVis.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0ED9739E1610C8B5000E4490 /* AstroVis */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AstroVis; sourceTree = BUILT_PRODUCTS_DIR; };
+		0ED973A21610C8B5000E4490 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		0ED973A41610C8B5000E4490 /* AstroVis.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AstroVis.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0ED9739B1610C8B5000E4490 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0ED973931610C8B5000E4490 = {
+			isa = PBXGroup;
+			children = (
+				0ED973A11610C8B5000E4490 /* AstroVis */,
+				0ED9739F1610C8B5000E4490 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0ED9739F1610C8B5000E4490 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0ED9739E1610C8B5000E4490 /* AstroVis */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0ED973A11610C8B5000E4490 /* AstroVis */ = {
+			isa = PBXGroup;
+			children = (
+				0ED973A21610C8B5000E4490 /* main.cpp */,
+				0ED973A41610C8B5000E4490 /* AstroVis.1 */,
+			);
+			path = AstroVis;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0ED9739D1610C8B5000E4490 /* AstroVis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0ED973A81610C8B5000E4490 /* Build configuration list for PBXNativeTarget "AstroVis" */;
+			buildPhases = (
+				0ED9739A1610C8B5000E4490 /* Sources */,
+				0ED9739B1610C8B5000E4490 /* Frameworks */,
+				0ED9739C1610C8B5000E4490 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AstroVis;
+			productName = AstroVis;
+			productReference = 0ED9739E1610C8B5000E4490 /* AstroVis */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0ED973951610C8B5000E4490 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 0ED973981610C8B5000E4490 /* Build configuration list for PBXProject "AstroVis" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0ED973931610C8B5000E4490;
+			productRefGroup = 0ED9739F1610C8B5000E4490 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0ED9739D1610C8B5000E4490 /* AstroVis */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0ED9739A1610C8B5000E4490 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ED973A31610C8B5000E4490 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0ED973A61610C8B5000E4490 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0ED973A71610C8B5000E4490 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		0ED973A91610C8B5000E4490 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0ED973AA1610C8B5000E4490 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0ED973981610C8B5000E4490 /* Build configuration list for PBXProject "AstroVis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0ED973A61610C8B5000E4490 /* Debug */,
+				0ED973A71610C8B5000E4490 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0ED973A81610C8B5000E4490 /* Build configuration list for PBXNativeTarget "AstroVis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0ED973A91610C8B5000E4490 /* Debug */,
+				0ED973AA1610C8B5000E4490 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0ED973951610C8B5000E4490 /* Project object */;
+}
