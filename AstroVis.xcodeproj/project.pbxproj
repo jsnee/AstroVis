@@ -25,6 +25,7 @@
 		0ED973D91610CCCB000E4490 /* GLUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED973D81610CCCA000E4490 /* GLUI.framework */; };
 		0ED973DB1610CCD0000E4490 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED973DA1610CCD0000E4490 /* GLUT.framework */; };
 		0ED973DD1610CCE6000E4490 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED973DC1610CCE5000E4490 /* OpenGL.framework */; };
+		0ED973DF1610D2E0000E4490 /* LoadConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973DE1610D2E0000E4490 /* LoadConfig.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +76,8 @@
 		0ED973D81610CCCA000E4490 /* GLUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUI.framework; path = Library/Frameworks/GLUI.framework; sourceTree = SDKROOT; };
 		0ED973DA1610CCD0000E4490 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		0ED973DC1610CCE5000E4490 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		0ED973DE1610D2E0000E4490 /* LoadConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadConfig.cpp; sourceTree = "<group>"; };
+		0ED973E01610D2EB000E4490 /* LoadConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 				0ED973A21610C8B5000E4490 /* main.cpp */,
 				0ED973D11610CB8A000E4490 /* SimpleSlicerWindow.cpp */,
 				0ED973D31610CB9D000E4490 /* SimpleSlicerWindow.h */,
+				0ED973DE1610D2E0000E4490 /* LoadConfig.cpp */,
+				0ED973E01610D2EB000E4490 /* LoadConfig.h */,
 				0ED973D41610CBB2000E4490 /* globaldefs.h */,
 				0ED973D51610CBE1000E4490 /* gluiVars.h */,
 			);
@@ -243,6 +248,7 @@
 				0ED973CB1610CB26000E4490 /* GlutWindow.cpp in Sources */,
 				0ED973CE1610CB49000E4490 /* mathutil.cpp in Sources */,
 				0ED973D21610CB8A000E4490 /* SimpleSlicerWindow.cpp in Sources */,
+				0ED973DF1610D2E0000E4490 /* LoadConfig.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
