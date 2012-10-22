@@ -75,6 +75,7 @@
 		0ED973DA1610CCD0000E4490 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		0ED973DC1610CCE5000E4490 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		0EEFBDDA1635C789005FEF9C /* data.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = data.zip; sourceTree = "<group>"; };
+		0EEFBDDB1635C7E0005FEF9C /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +121,7 @@
 				0ED973AD1610C940000E4490 /* mathutil */,
 				0ED973AE1610C948000E4490 /* transfunc */,
 				0EEFBDD91635C73D005FEF9C /* data */,
+				0EEFBDDB1635C7E0005FEF9C /* README.txt */,
 			);
 			path = AstroVis;
 			sourceTree = "<group>";
