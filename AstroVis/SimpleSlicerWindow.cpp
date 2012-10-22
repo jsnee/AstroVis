@@ -7,17 +7,12 @@
 #include <iostream>
 #include <GLUT/glut.h>
 #include <GLUI/glui.h>
-//#include <GL/glext.h>
 #include <assert.h>
 #include <string>
 #include <fstream>
 #include "LoadConfig.cpp"
 
-//#define COLOR_CODE_EDGES
-
 using namespace std;
-
-//PFNGLTEXIMAGE3DPROC glTexImage3D = NULL;
 
 //global variables
 int m_bDisplayTF = 3;
@@ -78,14 +73,6 @@ CSimpleSlicerWindow::CSimpleSlicerWindow()
 	zCent = 0.65;
 	r_div_h = 220;
     
-	// init OpenGL extension
-    //#ifdef WIN32
-    //	glTexImage3D             = (PFNGLTEXIMAGE3DPROC) wglGetProcAddress("glTexImage3D");
-    //#else // LINUX
-    //	glTexImage3D             = (PFNGLTEXIMAGE3DPROC) glxGetProcAddress("glTexImage3D");
-    //#endif
-    //	assert(glTexImage3D != NULL);
-    
 	m_pVertices[0] = CVector(-1.0,-1.0,-1.0, 1.0,  0.0, 0.0, 0.0);
 	m_pVertices[1] = CVector( 1.0,-1.0,-1.0, 1.0,  1.0, 0.0, 0.0);
 	m_pVertices[2] = CVector( 1.0, 1.0,-1.0, 1.0,  1.0, 1.0, 0.0);
@@ -115,9 +102,7 @@ CSimpleSlicerWindow::CSimpleSlicerWindow()
     
 	//initialize transfer functions with color map and trapazoid position
 	m_pTransferFunction   = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_12.ppm"),5,120,255,255,60);
-	//m_pTransferFunction   = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_12.ppm"),5,120,255,255,60);
     m_pTransferFunction1  = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_11.ppm"),50,120,255,255,20);
-    //m_pTransferFunction1  = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_11.ppm"),50,120,255,255,20);
     
 }
 
@@ -424,7 +409,6 @@ void CSimpleSlicerWindow::loadTex1() {
 		int i, j, k;
         
 		for(i=0; i<ZMAX; i++){
-			//ndx = 0;
 			for(j=0; j<YMAX; j++){
 				for(k=0; k<XMAX; k++){
 					pVolume[(i*YMAX*XMAX)+(j*XMAX)+k] = pVolTemp[(i*YMAX*XMAX)+(j*XMAX)+k];
@@ -456,9 +440,6 @@ void CSimpleSlicerWindow::loadTex1() {
 							pVolume[(i*YMAX*XMAX)+(j*XMAX)+k] = (unsigned char) 0;
 							continue;
 						}
-                        
-						//pVolume[(i*YMAX*XMAX)+(j*XMAX)+k] = (unsigned char)(c);
-						//ndx++;
 					}
 				}
 			}
@@ -733,7 +714,6 @@ void CSimpleSlicerWindow::loadTex2() {
 						if (i %8 == 1) {
 							
 							c = input[(i-9)/8][ndx];
-                            //cout << c <<endl;
                             pVolume3[(i*YMAX*XMAX)+(j*XMAX)+k] = (unsigned char)(c);
 							ndx++;
 						}
@@ -749,7 +729,6 @@ void CSimpleSlicerWindow::loadTex2() {
 		for(k=0; k<6; k++)
 			file_in[k].close();
         
-		//glGenTextures(6,m_pTextureids);
 		glBindTexture(GL_TEXTURE_3D,m_pTextureids[1]);
         
 		//======================== FILE READ IN =============================
@@ -780,7 +759,6 @@ void CSimpleSlicerWindow::loadTex2() {
 		int i, j, k;
         
 		for(i=0; i<ZMAX; i++){
-			//ndx = 0;
 			for(j=0; j<YMAX; j++){
 				for(k=0; k<XMAX; k++){
 					pVolume[(i*YMAX*XMAX)+(j*XMAX)+k] = pVolTemp1[(i*YMAX*XMAX)+(j*XMAX)+k];
@@ -812,9 +790,6 @@ void CSimpleSlicerWindow::loadTex2() {
 							pVolume[(i*YMAX*XMAX)+(j*XMAX)+k] = (unsigned char) 0;
 							continue;
 						}
-                        
-						//pVolume[(i*YMAX*XMAX)+(j*XMAX)+k] = (unsigned char)(c);
-						//ndx++;
 					}
 				}
 			}
@@ -859,8 +834,7 @@ void CSimpleSlicerWindow::drawString(char *s){
 
 void
 CSimpleSlicerWindow::cgRenderGeometry() {
-    
-    //std::cout << "Here's where we render stuff"<<std::endl;
+    //Begin Rendering
 	int pViewport[4];
 	glGetIntegerv(GL_VIEWPORT,pViewport);
     
@@ -1277,24 +1251,9 @@ CSimpleSlicerWindow::cgRenderGeometry() {
 		else if ((lmb[9] >= 0.0) && (lmb[9] < 1.0)) intersection[5] = vecStart[9] + lmb[9] * vecDir[9] ;
 		else intersection[5] = vecStart[11]+ lmb[11]* vecDir[11];
         
-		/*for(int i = 0; i < 6; ++i) {
-         std::cout << n << " intersection: " << i << " " << intersection[i].value_[0] <<
-         " " << intersection[i].value_[1] <<
-         " " << intersection[i].value_[2] << endl;
-         }
-         */
         
 		//======================== END INTERSECTION AND SLICES =======================
-        /*
-         
-         if (n < 5) {
-         glBegin(GL_LINE_LOOP);
-         for(int i = 0; i < 6; ++i) {
-         intersection[i].glVertex(false,true);
-         }
-         glEnd();
-         }
-         */
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
         
