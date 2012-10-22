@@ -49,6 +49,7 @@ CTransferFunction::CTransferFunction(char *p,int start,int mid1,int mid2,int end
 	}
 	else {
 		printf("unable to open colormap file\n");
+        printf("Make sure data folder has been unzipped to your desktop.\nIf problem still persists, check HOME environment variable");
 	}
     
 	while(j<768){

@@ -11,6 +11,7 @@
 #include <assert.h>
 #include <string>
 #include <fstream>
+#include "LoadConfig.cpp"
 
 //#define COLOR_CODE_EDGES
 
@@ -113,8 +114,10 @@ CSimpleSlicerWindow::CSimpleSlicerWindow()
 	m_nHeight = 0;
     
 	//initialize transfer functions with color map and trapazoid position
-	m_pTransferFunction   = new CTransferFunction("/Users/000617123/Desktop/data/ColorMap1D_12.ppm",5,120,255,255,60);
-	m_pTransferFunction1  = new CTransferFunction("/Users/000617123/Desktop/data/ColorMap1D_11.ppm",50,120,255,255,20);
+	m_pTransferFunction   = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_12.ppm"),5,120,255,255,60);
+	//m_pTransferFunction   = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_12.ppm"),5,120,255,255,60);
+    m_pTransferFunction1  = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_11.ppm"),50,120,255,255,20);
+    //m_pTransferFunction1  = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_11.ppm"),50,120,255,255,20);
     
 }
 
@@ -142,205 +145,205 @@ void CSimpleSlicerWindow::loadTex1() {
         
         switch (vol_data1) {
             case 0:
-                file_in[0].open(VOL1_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL1_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL1_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL1_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL1_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL1_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL1_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL1_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL1_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL1_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL1_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL1_SLIT6), ios::in | ios::binary);
                 break;
             case 1:
                 cout << "opening another " << endl;
-                file_in[0].open(VOL2_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL2_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL2_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL2_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL2_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL2_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL2_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL2_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL2_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL2_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL2_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL2_SLIT6), ios::in | ios::binary);
                 break;
             case 2:
-                file_in[0].open(VOL3_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL3_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL3_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL3_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL3_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL3_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL3_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL3_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL3_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL3_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL3_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL3_SLIT6), ios::in | ios::binary);
                 break;
             case 3:
-                file_in[0].open(VOL4_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL4_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL4_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL4_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL4_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL4_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL4_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL4_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL4_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL4_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL4_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL4_SLIT6), ios::in | ios::binary);
                 break;
             case 4:
-                file_in[0].open(VOL5_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL5_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL5_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL5_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL5_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL5_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL5_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL5_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL5_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL5_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL5_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL5_SLIT6), ios::in | ios::binary);
                 break;
             case 5:
-                file_in[0].open(VOL6_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL6_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL6_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL6_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL6_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL6_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL6_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL6_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL6_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL6_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL6_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL6_SLIT6), ios::in | ios::binary);
                 break;
             case 6:
-                file_in[0].open(VOL7_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL7_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL7_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL7_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL7_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL7_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL7_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL7_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL7_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL7_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL7_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL7_SLIT6), ios::in | ios::binary);
                 break;
             case 7:
-                file_in[0].open(VOL8_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL8_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL8_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL8_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL8_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL8_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL8_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL8_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL8_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL8_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL8_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL8_SLIT6), ios::in | ios::binary);
                 break;
             case 8:
-                file_in[0].open(VOL9_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL9_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL9_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL9_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL9_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL9_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL9_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL9_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL9_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL9_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL9_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL9_SLIT6), ios::in | ios::binary);
                 break;
             case 9:
-                file_in[0].open(VOL10_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL10_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL10_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL10_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL10_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL10_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL10_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL10_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL10_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL10_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL10_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL10_SLIT6), ios::in | ios::binary);
                 break;                
             case 10:
-                file_in[0].open(VOL11_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL11_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL11_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL11_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL11_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL11_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL11_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL11_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL11_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL11_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL11_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL11_SLIT6), ios::in | ios::binary);
                 break;                
             case 11:
-                file_in[0].open(VOL12_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL12_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL12_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL12_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL12_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL12_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL12_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL12_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL12_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL12_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL12_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL12_SLIT6), ios::in | ios::binary);
                 break;     
             case 12:
-                file_in[0].open(VOL13_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL13_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL13_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL13_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL13_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL13_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL13_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL13_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL13_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL13_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL13_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL13_SLIT6), ios::in | ios::binary);
                 break;     
             case 13:
-                file_in[0].open(VOL14_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL14_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL14_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL14_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL14_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL14_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL14_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL14_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL14_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL14_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL14_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL14_SLIT6), ios::in | ios::binary);
                 break;     
             case 14:
-                file_in[0].open(VOL15_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL15_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL15_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL15_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL15_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL15_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL15_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL15_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL15_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL15_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL15_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL15_SLIT6), ios::in | ios::binary);
                 break;     
             case 15:
-                file_in[0].open(VOL16_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL16_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL16_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL16_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL16_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL16_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL16_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL16_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL16_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL16_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL16_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL16_SLIT6), ios::in | ios::binary);
                 break;     
             case 16:
-                file_in[0].open(VOL17_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL17_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL17_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL17_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL17_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL17_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL17_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL17_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL17_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL17_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL17_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL17_SLIT6), ios::in | ios::binary);
                 break;     
             case 17:
-                file_in[0].open(VOL18_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL18_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL18_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL18_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL18_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL18_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL18_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL18_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL18_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL18_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL18_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL18_SLIT6), ios::in | ios::binary);
                 break;     
             case 18:
-                file_in[0].open(VOL19_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL19_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL19_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL19_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL19_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL19_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL19_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL19_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL19_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL19_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL19_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL19_SLIT6), ios::in | ios::binary);
                 break;     
             case 19:
-                file_in[0].open(VOL20_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL20_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL20_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL20_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL20_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL20_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL20_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL20_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL20_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL20_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL20_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL20_SLIT6), ios::in | ios::binary);
                 break;     
             case 20:
-                file_in[0].open(VOL21_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL21_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL21_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL21_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL21_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL21_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL21_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL21_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL21_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL21_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL21_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL21_SLIT6), ios::in | ios::binary);
                 break;     
             case 21:
-                file_in[0].open(VOL22_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL22_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL22_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL22_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL22_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL22_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL22_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL22_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL22_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL22_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL22_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL22_SLIT6), ios::in | ios::binary);
                 break;     
             case 22:
-                file_in[0].open(VOL23_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL23_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL23_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL23_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL23_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL23_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL23_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL23_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL23_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL23_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL23_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL23_SLIT6), ios::in | ios::binary);
                 break;     
             case 23:
-                file_in[0].open(VOL24_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL24_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL24_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL24_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL24_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL24_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL24_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL24_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL24_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL24_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL24_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL24_SLIT6), ios::in | ios::binary);
                 break;     
             case 24:
-                file_in[0].open(VOL25_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL25_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL25_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL25_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL25_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL25_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL25_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL25_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL25_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL25_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL25_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL25_SLIT6), ios::in | ios::binary);
                 break;     
             default:
                 break;
@@ -501,205 +504,205 @@ void CSimpleSlicerWindow::loadTex2() {
 		ifstream file_in[6];
         switch (vol_data2) {
             case 0:
-                file_in[0].open(VOL1_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL1_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL1_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL1_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL1_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL1_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL1_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL1_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL1_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL1_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL1_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL1_SLIT6), ios::in | ios::binary);
                 break;
             case 1:
                 cout << "opening another " << endl;
-                file_in[0].open(VOL2_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL2_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL2_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL2_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL2_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL2_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL2_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL2_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL2_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL2_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL2_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL2_SLIT6), ios::in | ios::binary);
                 break;
             case 2:
-                file_in[0].open(VOL3_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL3_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL3_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL3_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL3_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL3_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL3_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL3_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL3_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL3_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL3_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL3_SLIT6), ios::in | ios::binary);
                 break;
             case 3:
-                file_in[0].open(VOL4_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL4_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL4_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL4_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL4_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL4_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL4_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL4_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL4_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL4_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL4_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL4_SLIT6), ios::in | ios::binary);
                 break;
             case 4:
-                file_in[0].open(VOL5_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL5_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL5_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL5_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL5_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL5_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL5_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL5_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL5_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL5_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL5_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL5_SLIT6), ios::in | ios::binary);
                 break;
             case 5:
-                file_in[0].open(VOL6_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL6_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL6_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL6_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL6_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL6_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL6_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL6_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL6_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL6_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL6_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL6_SLIT6), ios::in | ios::binary);
                 break;
             case 6:
-                file_in[0].open(VOL7_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL7_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL7_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL7_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL7_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL7_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL7_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL7_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL7_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL7_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL7_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL7_SLIT6), ios::in | ios::binary);
                 break;
             case 7:
-                file_in[0].open(VOL8_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL8_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL8_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL8_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL8_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL8_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL8_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL8_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL8_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL8_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL8_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL8_SLIT6), ios::in | ios::binary);
                 break;
             case 8:
-                file_in[0].open(VOL9_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL9_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL9_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL9_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL9_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL9_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL9_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL9_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL9_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL9_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL9_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL9_SLIT6), ios::in | ios::binary);
                 break;
             case 9:
-                file_in[0].open(VOL10_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL10_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL10_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL10_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL10_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL10_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL10_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL10_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL10_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL10_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL10_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL10_SLIT6), ios::in | ios::binary);
                 break;                
             case 10:
-                file_in[0].open(VOL11_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL11_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL11_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL11_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL11_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL11_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL11_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL11_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL11_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL11_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL11_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL11_SLIT6), ios::in | ios::binary);
                 break;                
             case 11:
-                file_in[0].open(VOL12_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL12_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL12_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL12_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL12_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL12_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL12_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL12_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL12_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL12_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL12_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL12_SLIT6), ios::in | ios::binary);
                 break;     
             case 12:
-                file_in[0].open(VOL13_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL13_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL13_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL13_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL13_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL13_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL13_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL13_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL13_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL13_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL13_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL13_SLIT6), ios::in | ios::binary);
                 break;     
             case 13:
-                file_in[0].open(VOL14_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL14_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL14_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL14_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL14_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL14_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL14_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL14_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL14_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL14_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL14_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL14_SLIT6), ios::in | ios::binary);
                 break;     
             case 14:
-                file_in[0].open(VOL15_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL15_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL15_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL15_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL15_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL15_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL15_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL15_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL15_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL15_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL15_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL15_SLIT6), ios::in | ios::binary);
                 break;     
             case 15:
-                file_in[0].open(VOL16_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL16_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL16_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL16_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL16_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL16_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL16_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL16_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL16_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL16_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL16_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL16_SLIT6), ios::in | ios::binary);
                 break;     
             case 16:
-                file_in[0].open(VOL17_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL17_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL17_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL17_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL17_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL17_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL17_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL17_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL17_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL17_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL17_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL17_SLIT6), ios::in | ios::binary);
                 break;     
             case 17:
-                file_in[0].open(VOL18_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL18_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL18_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL18_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL18_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL18_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL18_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL18_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL18_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL18_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL18_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL18_SLIT6), ios::in | ios::binary);
                 break;     
             case 18:
-                file_in[0].open(VOL19_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL19_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL19_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL19_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL19_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL19_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL19_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL19_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL19_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL19_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL19_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL19_SLIT6), ios::in | ios::binary);
                 break;     
             case 19:
-                file_in[0].open(VOL20_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL20_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL20_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL20_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL20_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL20_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL20_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL20_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL20_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL20_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL20_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL20_SLIT6), ios::in | ios::binary);
                 break;     
             case 20:
-                file_in[0].open(VOL21_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL21_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL21_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL21_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL21_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL21_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL21_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL21_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL21_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL21_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL21_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL21_SLIT6), ios::in | ios::binary);
                 break;     
             case 21:
-                file_in[0].open(VOL22_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL22_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL22_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL22_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL22_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL22_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL22_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL22_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL22_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL22_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL22_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL22_SLIT6), ios::in | ios::binary);
                 break;     
             case 22:
-                file_in[0].open(VOL23_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL23_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL23_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL23_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL23_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL23_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL23_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL23_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL23_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL23_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL23_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL23_SLIT6), ios::in | ios::binary);
                 break;     
             case 23:
-                file_in[0].open(VOL24_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL24_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL24_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL24_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL24_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL24_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL24_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL24_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL24_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL24_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL24_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL24_SLIT6), ios::in | ios::binary);
                 break;     
             case 24:
-                file_in[0].open(VOL25_SLIT1, ios::in | ios::binary);
-                file_in[1].open(VOL25_SLIT2, ios::in | ios::binary);
-                file_in[2].open(VOL25_SLIT3, ios::in | ios::binary);
-                file_in[3].open(VOL25_SLIT4, ios::in | ios::binary);
-                file_in[4].open(VOL25_SLIT5, ios::in | ios::binary);
-                file_in[5].open(VOL25_SLIT6, ios::in | ios::binary);
+                file_in[0].open(getRoot(VOL25_SLIT1), ios::in | ios::binary);
+                file_in[1].open(getRoot(VOL25_SLIT2), ios::in | ios::binary);
+                file_in[2].open(getRoot(VOL25_SLIT3), ios::in | ios::binary);
+                file_in[3].open(getRoot(VOL25_SLIT4), ios::in | ios::binary);
+                file_in[4].open(getRoot(VOL25_SLIT5), ios::in | ios::binary);
+                file_in[5].open(getRoot(VOL25_SLIT6), ios::in | ios::binary);
                 break;     
             default:
                 break;
@@ -1391,11 +1394,11 @@ bool CSimpleSlicerWindow::createPrograms()
 	m_pVertexPrograms   = new CGprogram[NUM_VERTPROGS];
 	m_pFragmentPrograms = new CGprogram[NUM_FRAGPROGS];
     
-	const char *strVertProgFiles[NUM_VERTPROGS] = {"/Users/000617123/Desktop/data/shaders/vp_simple.cg"};
+	const char *strVertProgFiles[NUM_VERTPROGS] = {getRoot("/Desktop/data/shaders/vp_simple.cg")};
 	const char *strFragProgFiles[NUM_FRAGPROGS] = {
-		"/Users/000617123/Desktop/data/shaders/fp_emission_absorption.cg", 
-		"/Users/000617123/Desktop/data/shaders/fp_emis_abs_gradlightPhong.cg",
-		"/Users/000617123/Desktop/data/shaders/fp_showGradient.cg"};
+		getRoot("/Desktop/data/shaders/fp_emission_absorption.cg"), 
+		getRoot("/Desktop/data/shaders/fp_emis_abs_gradlightPhong.cg"),
+		getRoot("/Desktop/data/shaders/fp_showGradient.cg")};
     
     cgGLEnableProfile(vertProfile);
     cgGLEnableProfile(fragProfile);

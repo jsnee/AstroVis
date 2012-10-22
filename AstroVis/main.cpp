@@ -8,6 +8,7 @@
  *******************************************************************************
  ******************************************************************************/
 
+//#include "LoadConfig.h"
 #include "SimpleSlicerWindow.h"
 #include "Camera.h"
 #include "gluiVars.h"
@@ -15,6 +16,8 @@
 #include <GLUT/glut.h>
 #include <GLUI/glui.h>
 #include <time.h>
+#include "LoadConfig.cpp"
+//#include <unistd.h>
 
 CGlutWindow *g_pMainWindow = 0;
 
@@ -27,6 +30,7 @@ void move(int x, int y)                         { g_pMainWindow->mouseMoveEvent(
 
 int main(int argc, char* argv[])
 {
+    
 	//GLUI variables
 	GLUI_Listbox *box;
     GLUI_Listbox *box2;
@@ -50,7 +54,7 @@ int main(int argc, char* argv[])
     glutMotionFunc(move);
     //glutPassiveMotionFunc(move);
     
-    
+    printf(getRoot("/Desktop/data/shaders/fp_emis_abs_gradlightPhong.cg\n"));
     
 	//create glui window
 	GLUI *glui = GLUI_Master.create_glui("Control Panel",0,0,0);
