@@ -31,7 +31,6 @@ public:
     
 protected:
 	int      count;
-	//int      m_bDisplayTF;
 	GLuint   m_pTextureids[2];
 	int      m_nNumSlices;
 	CVector  m_pVertices[8];
