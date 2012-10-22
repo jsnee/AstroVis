@@ -74,6 +74,7 @@
 		0ED973D81610CCCA000E4490 /* GLUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUI.framework; path = Library/Frameworks/GLUI.framework; sourceTree = SDKROOT; };
 		0ED973DA1610CCD0000E4490 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		0ED973DC1610CCE5000E4490 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		0EEFBDDA1635C789005FEF9C /* data.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = data.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,10 +115,11 @@
 		0ED973A11610C8B5000E4490 /* AstroVis */ = {
 			isa = PBXGroup;
 			children = (
-				0ED973AE1610C948000E4490 /* transfunc */,
-				0ED973AD1610C940000E4490 /* mathutil */,
-				0ED973AC1610C93A000E4490 /* core */,
 				0ED973AB1610C92D000E4490 /* app */,
+				0ED973AC1610C93A000E4490 /* core */,
+				0ED973AD1610C940000E4490 /* mathutil */,
+				0ED973AE1610C948000E4490 /* transfunc */,
+				0EEFBDD91635C73D005FEF9C /* data */,
 			);
 			path = AstroVis;
 			sourceTree = "<group>";
@@ -177,6 +179,14 @@
 				0ED973B41610C9E2000E4490 /* Trapez.h */,
 			);
 			name = transfunc;
+			sourceTree = "<group>";
+		};
+		0EEFBDD91635C73D005FEF9C /* data */ = {
+			isa = PBXGroup;
+			children = (
+				0EEFBDDA1635C789005FEF9C /* data.zip */,
+			);
+			name = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
