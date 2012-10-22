@@ -1,8 +1,6 @@
 #ifndef GLOBALDEFS_INCLUDED
 #define GLOBALDEFS_INCLUDED
 
-//#include "LoadConfig.cpp"
-
 #define TF_TABLE_SIZE (256)
 
 #ifndef M_PI
@@ -15,69 +13,7 @@
 
 #define RATIO
 
-//#define ROOTDIR ((char*)getenv("HOME"))
-//#define (x) (ROOTDIR ## x)
-//#define (x) (x)
-
-//#define SPHERE
 #define CONE
-/*
-#ifdef ENGINE
-#define FILENAME (("/Desktop/data/Engine256.raw"))
-#define XMAX (256)
-#define YMAX (256)
-#define ZMAX (256)
-
-#define XSIZE 1.0  
-#define YSIZE 1.0
-#define ZSIZE 1.0
-#endif
-*/
-/*
-#ifdef CTA
-#define FILENAME (("/Desktop/data/CTA.raw"))
-#define XMAX (512)
-#define YMAX (512)
-#define ZMAX (79)
-
-#define XSIZE 1.0  
-#define YSIZE 1.0
-#define ZSIZE 0.1617646188829
-
-#define XSCALE 1.0  
-#define YSCALE 1.0
-#define ZSCALE 0.1617646188829
-#endif
-*/
-
-#ifdef ASTRO
-#define VOL1_SLIT1 (("/Desktop/data/1068s1g.txt"))
-#define VOL1_SLIT2 (("/Desktop/data/1068s2g.txt"))
-#define VOL1_SLIT3 (("/Desktop/data/1068s3g.txt"))
-#define VOL1_SLIT4 (("/Desktop/data/1068s4g.txt"))
-#define VOL1_SLIT5 (("/Desktop/data/1068s5g.txt"))
-#define VOL1_SLIT6 (("/Desktop/data/1068s6g.txt"))
-#define VOL2_SLIT1 (("/Desktop/data/1068s1a.txt"))
-#define VOL2_SLIT2 (("/Desktop/data/1068s2a.txt"))
-#define VOL2_SLIT3 (("/Desktop/data/1068s3a.txt"))
-#define VOL2_SLIT4 (("/Desktop/data/1068s4a.txt"))
-#define VOL2_SLIT5 (("/Desktop/data/1068s5a.txt"))
-#define VOL2_SLIT6 (("/Desktop/data/1068s6a.txt"))
-#define GRAD_X     (("/Desktop/data/1068gAllNNx.txt"))
-#define GRAD_Y     (("/Desktop/data/1068gAllNNy.txt"))
-
-#define XMAX (512)
-#define YMAX (512)
-#define ZMAX (64)
-
-#define XSIZE 1.0  
-#define YSIZE 1.0
-#define ZSIZE 0.25 
-
-#define XSCALE 0.718750
-#define YSCALE 1.000000
-#define ZSCALE 0.234375
-#endif
 
 #ifdef RATIO
 #define BLOB_FILE  (("/Desktop/data/blobID.txt"))
@@ -257,14 +193,6 @@
 #define VOL25_SLIT5 (("/Desktop/data/rand/radrandi90tf5.bin"))
 #define VOL25_SLIT6 (("/Desktop/data/rand/radrandi90tf6.bin"))
 
-
-
-
-
-
-
-
-
 #define XMAX (512)
 #define YMAX (512)
 #define ZMAX (64)
@@ -273,7 +201,6 @@
 #define YSIZE 1.0
 #define ZSIZE 0.25 
 
-//#define XSCALE 0.718750
 #define XSCALE 1.000000
 #define YSCALE 1.000000
 #define ZSCALE 0.187500
