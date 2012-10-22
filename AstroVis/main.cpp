@@ -8,7 +8,6 @@
  *******************************************************************************
  ******************************************************************************/
 
-//#include "LoadConfig.h"
 #include "SimpleSlicerWindow.h"
 #include "Camera.h"
 #include "gluiVars.h"
@@ -17,7 +16,6 @@
 #include <GLUI/glui.h>
 #include <time.h>
 #include "LoadConfig.cpp"
-//#include <unistd.h>
 
 CGlutWindow *g_pMainWindow = 0;
 
@@ -35,7 +33,6 @@ int main(int argc, char* argv[])
 	GLUI_Listbox *box;
     GLUI_Listbox *box2;
 	GLUI_Rollout *slitview_panel;
-	//GLUI_Rollout *imgview_panel;
 	GLUI_RadioGroup *radio;
 	GLUI_Checkbox *check;
     GLUI_Checkbox *check2;
@@ -52,7 +49,6 @@ int main(int argc, char* argv[])
     glutKeyboardFunc(keyboard);
     glutMouseFunc(mouse);
     glutMotionFunc(move);
-    //glutPassiveMotionFunc(move);
     
     printf(getRoot("/Desktop/data/shaders/fp_emis_abs_gradlightPhong.cg\n"));
     
