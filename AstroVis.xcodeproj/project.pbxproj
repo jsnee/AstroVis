@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0E951D1B1630732E00DB295F /* LoadConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E951D1A1630732E00DB295F /* LoadConfig.cpp */; };
 		0ED973A31610C8B5000E4490 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973A21610C8B5000E4490 /* main.cpp */; };
-		0ED973A51610C8B5000E4490 /* AstroVis.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0ED973A41610C8B5000E4490 /* AstroVis.1 */; };
 		0ED973B01610C974000E4490 /* TransferFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973AF1610C974000E4490 /* TransferFunction.cpp */; };
 		0ED973B31610C9CD000E4490 /* Trapez.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973B21610C9CD000E4490 /* Trapez.cpp */; };
 		0ED973B61610CA00000E4490 /* CMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ED973B51610CA00000E4490 /* CMatrix.cpp */; };
@@ -35,7 +34,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				0ED973A51610C8B5000E4490 /* AstroVis.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -45,7 +43,6 @@
 		0E951D1A1630732E00DB295F /* LoadConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = LoadConfig.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		0ED9739E1610C8B5000E4490 /* AstroVis */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AstroVis; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED973A21610C8B5000E4490 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		0ED973A41610C8B5000E4490 /* AstroVis.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AstroVis.1; sourceTree = "<group>"; };
 		0ED973AF1610C974000E4490 /* TransferFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransferFunction.cpp; sourceTree = "<group>"; };
 		0ED973B11610C99C000E4490 /* TransferFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferFunction.h; sourceTree = "<group>"; };
 		0ED973B21610C9CD000E4490 /* Trapez.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trapez.cpp; sourceTree = "<group>"; };
@@ -121,7 +118,6 @@
 				0ED973AD1610C940000E4490 /* mathutil */,
 				0ED973AC1610C93A000E4490 /* core */,
 				0ED973AB1610C92D000E4490 /* app */,
-				0ED973A41610C8B5000E4490 /* AstroVis.1 */,
 			);
 			path = AstroVis;
 			sourceTree = "<group>";
