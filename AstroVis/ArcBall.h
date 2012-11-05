@@ -7,7 +7,7 @@
 
 #if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+#endif
 
 #include "CPosition.h"
 #include "CVector.h"
@@ -42,4 +42,4 @@ private:
     bool m_bDragging;
 };
 
-#endif // !defined(_CArcBall_H__INCLUDED_)
+#endif

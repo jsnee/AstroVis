@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-
 #include "CVector.h"
 
 #define _EPSILON (0.0001)

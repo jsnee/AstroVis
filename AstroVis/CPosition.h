@@ -154,4 +154,4 @@ public:
     
 };
 
-#endif // CPosition_H
+#endif

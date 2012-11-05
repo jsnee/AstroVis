@@ -1,12 +1,6 @@
 
 #include "Camera.h"
 #include <GLUT/glut.h>
-//#include <GL/glu.h>
-//#ifdef _WIN32
-//#include <GL/glut.h>
-//#else
-//#include <GL/gl.h>
-//#endif
 
 
 // A good angle for the field-of-view is 30 degrees.
@@ -220,8 +214,6 @@ void Camera::transform(int cameraMode, float stereoDistance) {
     float orientationMultiplier = (cameraMode == CAMERA_RIGHT ? 1.0 : -1.0);
     Vector3 right = Vector3(0, 0, 0);
     
-    //fprintf(stdout, "cameraMode = %i;  (stereo = %i)\n", cameraMode, (cameraMode != CAMERA_MONO));
-    
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();  // clear matrix
     
@@ -240,11 +232,6 @@ void Camera::transform(int cameraMode, float stereoDistance) {
               _near_plane, _far_plane
               );
     
-    // fprintf(stdout, "cameraMode = %i; %f %f %f\n", cameraMode,
-    //		_position.x() + right.x()*(stereoDistance / 2.0)*orientationMultiplier, 
-    //		_position.y() + right.y()*(stereoDistance / 2.0)*orientationMultiplier, 
-    //		_position.z() + right.z()*(stereoDistance / 2.0)*orientationMultiplier);
-    
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(	_position.x() + right.x()*(stereoDistance / 2.0)*orientationMultiplier, 
@@ -252,21 +239,6 @@ void Camera::transform(int cameraMode, float stereoDistance) {
               _position.z() + right.z()*(stereoDistance / 2.0)*orientationMultiplier,
               _target.x(),  _target.y(),    _target.z(),
               _up.x(),      _up.y(),	      _up.z());
-    //Matrix m;
-    //m.setToLookAt( _position, _target, _up );
-    //glMultMatrixf( m.get() );
-    /* An experiment...
-     
-     if (cameraMode == CAMERA_RIGHT) {
-     glFogi(GL_FOG_MODE, GL_LINEAR);		// Fog Mode
-     glFogf(GL_FOG_DENSITY, .85f);			// How Dense Will The Fog Be
-     glHint(GL_FOG_HINT, GL_NICEST);			// Fog Hint Value
-     glFogf(GL_FOG_START, _near_plane);				// Fog Start Depth
-     glFogf(GL_FOG_END, _far_plane);				// Fog End Depth
-     glEnable(GL_FOG);
-     }
-     else glDisable(GL_FOG);
-     */
 }
 
 void Camera::pushViewportAndTransform(

@@ -5,9 +5,9 @@
 
 #include "global.h"
 #include <vector>
-using namespace std;
 #include <math.h>
 
+using namespace std;
 
 #ifdef DEBUG
 /* convenient macro for printing vectors and points during debugging */
@@ -449,5 +449,5 @@ public:
 };
 
 
-#endif /* MATHUTIL_H */
+#endif
 

@@ -4,7 +4,6 @@
 #define USE_GLVERTEX
 
 #ifdef USE_GLVERTEX
-//#include <windows.h>
 #include <GLUT/glut.h>
 #endif
 
@@ -208,4 +207,4 @@ public:
 };
 
 
-#endif // CVector_H
+#endif

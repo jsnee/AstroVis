@@ -10,13 +10,11 @@ CGprofile CGlutCgWindow::s_fragmentProfile = CG_PROFILE_UNKNOWN;
 static void handleCgError() 
 {
     fprintf(stderr, "Cg error: %s\n", cgGetErrorString(cgGetError()));
-    // exit(1);
 }
 
 CGlutCgWindow::CGlutCgWindow(void)
 {
 	s_fragmentProfile = s_vertexProfile = CG_PROFILE_UNKNOWN;
-	//m_fragmentProgram = m_vertexProgram = NULL;
 	initializeCg();
 }
 
@@ -35,12 +33,10 @@ CGlutCgWindow::initializeCg() {
 }
 
 void CGlutCgWindow::cgRenderGeometry() {
-    //std::cout<<"cgGlutwindow"<<std::endl;
     
 }
 
 void CGlutCgWindow::renderGeometry() {
-    //std::cout<<"CGlutwindow"<<std::endl;
 	static bool bInit = false;
 	if (false == bInit) {
 		chooseProfiles();

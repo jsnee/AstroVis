@@ -818,18 +818,22 @@ void CSimpleSlicerWindow::loadTex2() {
 
 
 bool CSimpleSlicerWindow::loadTextures() {
-    
-    cout << "HERE" << endl;
 	loadTex1();
 	loadTex2();
 	return true;
 }
 
 
-void CSimpleSlicerWindow::drawString(char *s){
+void CSimpleSlicerWindow::drawString(char *s) {
 	int i;
-	for(i=0; i<strlen(s); i++)
+	for(i=0; i<strlen(s); i++) {
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, s[i]);
+    }
+}
+
+void CSimpleSlicerWindow::drawStrings(string s) {
+    char* inputString = (char*) s.c_str();
+    drawString(inputString);
 }
 
 void
@@ -1039,11 +1043,11 @@ CSimpleSlicerWindow::cgRenderGeometry() {
 	//NAME AXES
 	if(boundBox == 1){
 		glRasterPos4dv(&xLine[0]);
-		drawString("Velocity");
+		drawStrings("Velocity");
 		glRasterPos4dv(&yLine[0]);
-		drawString("Distance");
+		drawStrings("Distance");
 		glRasterPos4dv(&zLine[0]);
-		drawString("Slit");
+		drawStrings("Slit");
 	}
     
 	CVector SlitStartB  = CVector(XSCALE,  -YSCALE-0.05,  1.00000*(48./64.),1.0,  0.0,0.0,0.0);

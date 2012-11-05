@@ -26,26 +26,21 @@ Vector3 Vector3::choosePerpendicular() const {
         if ( Y < Z ) {
             // X < Y < Z
             v = Vector3( 0, z(), -y() );
-        }
-        else if ( X < Z ) {
+        } else if ( X < Z ) {
             // X < Z <= Y
             v = Vector3( 0, z(), -y() );
-        }
-        else {
+        } else {
             // Z <= X < Y
             v = Vector3( y(), -x(), 0 );
         }
-    }
-    else {
+    } else {
         if ( Z < Y ) {
             // Z < Y <= X
             v = Vector3( y(), -x(), 0 );
-        }
-        else if ( Z < X ) {
+        } else if ( Z < X ) {
             // Y <= Z < X
             v = Vector3( z(), 0, -x() );
-        }
-        else {
+        } else {
             // Y <= X <= Z
             v = Vector3( z(), 0, -x() );
         }
@@ -65,8 +60,7 @@ short Vector3::indexOfLeastComponent() const {
     float Z = fabs(z());
     if ( Y <= Z ) {
         return X <= Y ? 0 : 1;
-    }
-    else {
+    } else {
         return X <= Z ? 0 : 2;
     }
 }
@@ -77,8 +71,7 @@ short Vector3::indexOfGreatestComponent() const {
     float Z = fabs(z());
     if ( Y >= Z ) {
         return X >= Y ? 0 : 1;
-    }
-    else {
+    } else {
         return X >= Z ? 0 : 2;
     }
 }
@@ -92,8 +85,9 @@ float Vector3::computeAngle( const Vector3 & v1, const Vector3 & v2 ) {
     float lengthOfCross = cross.length();
     float angle = ( lengthOfCross >= 1 ) ? M_PI/2 : asin( lengthOfCross );
     
-    if ( v1 * v2 < 0 )
+    if ( v1 * v2 < 0 ) {
         angle = M_PI - angle;
+    }
     return angle;
 }
 
@@ -108,9 +102,12 @@ float Vector3::computeSignedAngle(
     float lengthOfCross = cross.length();
     float angle = ( lengthOfCross >= 1 ) ? M_PI/2 : asin( lengthOfCross );
     
-    if ( v1 * v2 < 0 )
+    if ( v1 * v2 < 0 ) {
         angle = M_PI - angle;
-    if ( cross*axis < 0 ) angle = -angle;
+    }
+    if ( cross*axis < 0 ) {
+        angle = -angle;
+    }
     return angle;
 }
 

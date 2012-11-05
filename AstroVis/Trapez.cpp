@@ -46,16 +46,15 @@ void CTrapez::setTrapez(int nStart, int nMid1, int nMid2,  int nEnd,  int nHeigh
     
 }
 
-void CTrapez::drawString(char *s){
+void CTrapez::drawString(char *s) {
 	int i;
 	for(i=0; i<strlen(s); i++)
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10, s[i]);
 }
 
-void CTrapez::render(int id) 
-{
+void CTrapez::render(int id) {
 	glLineWidth(1.0);
-	glColor4f(1.0, 1.0, 1.0, 0.5); //(m_color[0],m_color[1],m_color[2],0.5);
+	glColor4f(1.0, 1.0, 1.0, 0.5);
 	glBegin(GL_QUADS);
 	glVertex2i(m_nStart, 256);
 	glVertex2i(m_nMid1, 256-m_nHeight);
@@ -63,7 +62,7 @@ void CTrapez::render(int id)
 	glVertex2i(m_nEnd, 256);
 	glEnd();
     
-	glColor4f(1.0, 1.0, 1.0, 1.0); //(m_color[0],m_color[1],m_color[2],1.0);
+	glColor4f(1.0, 1.0, 1.0, 1.0);
 	glBegin(GL_LINE_STRIP);
 	glVertex2i(m_nStart, 256);
 	glVertex2i(m_nMid1, 256-m_nHeight);
@@ -83,118 +82,11 @@ void CTrapez::render(int id)
 }
 
 //SHOWS CURRENT VALUES OF THE TRAPAZOID IF MOUSE IS HOVERING OVER TF BOX
-void
-CTrapez::popUpNum(int id) {
-    /*
-     POINT coord;
-     HWND hwnd;
-     hwnd = FindWindow("GLUT", "Astronomy Multi-Volume Renderer");
-     GetCursorPos(&coord);
-     ScreenToClient(hwnd, &coord);
-     int w = glutGet( GLUT_WINDOW_WIDTH );
-     int h = glutGet( GLUT_WINDOW_HEIGHT);
-     
-     if((id==0 && coord.x>=10 && coord.x<274 && coord.y>=h-306 &&coord.y<h-10)||
-     (id==1 && coord.x>=w-274 && coord.x<w-10 && coord.y>=h-306 &&coord.y<h-10)){
-     char *start = new char[5];
-     char *mid1 = new char[5];
-     char *mid2 = new char[5];
-     char *end = new char[5];
-     char *height = new char[8];
-     char per = '%';
-     
-     _set_output_format(_TWO_DIGIT_EXPONENT);
-     
-     if(id==0){
-     if(vol1max>0.01){
-     sprintf(start,"%.2f",m_nStart*((vol1max-vol1min)/255.)+vol1min);
-     sprintf(mid1,"%.2f",m_nMid1*((vol1max-vol1min)/255.)+vol1min);
-     sprintf(mid2,"%.2f",m_nMid2*((vol1max-vol1min)/255.)+vol1min);
-     sprintf(end,"%.2f",m_nEnd*((vol1max-vol1min)/255.)+vol1min);
-     }
-     else{
-     sprintf(start,"%.2e",m_nStart*((vol1max-vol1min)/255.)+vol1min);
-     sprintf(mid1,"%.2e",m_nMid1*((vol1max-vol1min)/255.)+vol1min);
-     sprintf(mid2,"%.2e",m_nMid2*((vol1max-vol1min)/255.)+vol1min);
-     sprintf(end,"%.2e",m_nEnd*((vol1max-vol1min)/255.)+vol1min);
-     }
-     sprintf(height,"%.2f%c",m_nHeight*(100./255.),per);
-     }
-     else{
-     if(vol2max>0.01){
-     sprintf(start,"%.2f",m_nStart*((vol2max-vol2min)/255.)+vol2min);
-     sprintf(mid1,"%.2f",m_nMid1*((vol2max-vol2min)/255.)+vol2min);
-     sprintf(mid2,"%.2f",m_nMid2*((vol2max-vol2min)/255.)+vol2min);
-     sprintf(end,"%.2f",m_nEnd*((vol2max-vol2min)/255.)+vol2min);
-     }
-     else{
-     sprintf(start,"%.2e",m_nStart*((vol2max-vol2min)/255.)+vol2min);
-     sprintf(mid1,"%.2e",m_nMid1*((vol2max-vol2min)/255.)+vol2min);
-     sprintf(mid2,"%.2e",m_nMid2*((vol2max-vol2min)/255.)+vol2min);
-     sprintf(end,"%.2e",m_nEnd*((vol2max-vol2min)/255.)+vol2min);
-     }
-     sprintf(height,"%.2f%c",m_nHeight*(100./255.),per);
-     }
-     
-     glColor4f(0.0, 0.0, 0.0, 1.0);
-     if((id==0 && vol1max<=0.01) || (id!=0 && vol2max<=0.01)){ 
-     char *s1 = new char [4];			char *fm1 = new char[4];
-     char *s2 = new char [4];			char *fm2 = new char[4];
-     s1[0] = start[0];					fm1[0] = mid1[0];
-     s1[1] = start[1];					fm1[1] = mid1[1];
-     s1[2] = start[2];					fm1[2] = mid1[2];
-     s1[3] = start[3];					fm1[3] = mid1[3];
-     s2[0] = start[4];					fm2[0] = mid1[4];
-     s2[1] = start[5];					fm2[1] = mid1[5];
-     s2[2] = start[6];					fm2[2] = mid1[6];
-     s2[3] = start[7];					fm2[3] = mid1[7];
-     glRasterPos2i(m_nStart+10, 240);
-     drawString(s1);
-     glRasterPos2i(m_nStart+10, 250);
-     drawString(s2);
-     glRasterPos2i(m_nMid1+10, 268-m_nHeight);
-     drawString(fm1);
-     glRasterPos2i(m_nMid1+10, 278-m_nHeight);
-     drawString(fm2);
-     char *e1 = new char [4];			char *sm1 = new char[4];
-     char *e2 = new char [4];			char *sm2 = new char[4];
-     e1[0] = end[0];						sm1[0] = mid2[0];
-     e1[1] = end[1];						sm1[1] = mid2[1];
-     e1[2] = end[2];						sm1[2] = mid2[2];
-     e1[3] = end[3];						sm1[3] = mid2[3];
-     e2[0] = end[4];						sm2[0] = mid2[4];
-     e2[1] = end[5];						sm2[1] = mid2[5];
-     e2[2] = end[6];						sm2[2] = mid2[6];
-     e2[3] = end[7];						sm2[3] = mid2[7];
-     glRasterPos2i(m_nMid2-32, 268-m_nHeight);
-     drawString(sm1);
-     glRasterPos2i(m_nMid2-32, 278-m_nHeight);
-     drawString(sm2);
-     glRasterPos2i(m_nEnd-32, 240);
-     drawString(e1);
-     glRasterPos2i(m_nEnd-32, 250);
-     drawString(e2);
-     }
-     else{
-     glRasterPos2i(m_nStart+10, 250);
-     drawString(start);
-     glRasterPos2i(m_nMid1+10, 268-m_nHeight);
-     drawString(mid1);
-     glRasterPos2i(m_nMid2-32, 268-m_nHeight);
-     drawString(mid2);
-     glRasterPos2i(m_nEnd-32, 250);
-     drawString(end);
-     }
-     
-     glColor4f(1.0, 1.0, 0.0, 1.0);
-     glRasterPos2i(1, 256-(m_nHeight*(248./255.)));
-     drawString(height);
-     }
-     */
+void CTrapez::popUpNum(int id) {
+    
 }
 
-bool
-CTrapez::handleButtonEvent(int button, int state, int x, int y) {
+bool CTrapez::handleButtonEvent(int button, int state, int x, int y) {
 	
 	switch(state) {
         case GLUT_DOWN:
@@ -217,14 +109,12 @@ CTrapez::handleButtonEvent(int button, int state, int x, int y) {
 	return false;
 }
 
-bool 
-CTrapez::handleMoveEvent(int x, int y) {
+bool CTrapez::handleMoveEvent(int x, int y) {
 	
 	CPosition point(x,y);
     
 	bool retval = false;
 	int nSel = m_nSelectedPoint;
-	//double dW= dEnd-dStart;
 	
 	InteractionState nOldState = m_nState;
 	m_nState = classifyPoint(point,m_nSelectedPoint);
@@ -409,8 +299,7 @@ CTrapez::classifyPoint(CPosition point, int &nSelectedPoint) {
 	return NO_INTERACTION;
 }
 
-int CTrapez::value(int nPos)
-{
+int CTrapez::value(int nPos) {
 	if ((nPos > m_nEnd) || (nPos < m_nStart)) return 0;
 	
 	if (nPos < m_nMid1) {

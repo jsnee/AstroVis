@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
-
 #include "CQuaternion.h"
 #include "CVector.h"
 
@@ -543,23 +542,6 @@ CQuaternion::getMatrix4x4() const
     double xx = value_[0]*xs,	      xy = value_[0]*ys,	  xz = value_[0]*zs;
     double yy = value_[1]*ys,	      yz = value_[1]*zs,	  zz = value_[2]*zs;
     
-	/*return GtMatrix4x4(1.0 - (yy + zz),  //00
-     xy + wz,          //10
-     xz - wy,          //20
-     0.0,              //30
-     xy - wz,          //01
-     1.0 - (xx + zz),  //11
-     yz + wx,          //21
-     0.0,              //31
-     xz + wy,          //02
-     yz - wx,          //12
-     1.0 - (xx + yy),  //22
-     0.0,              //32
-     0.0,              //03
-     0.0,              //13
-     0.0,              //23
-     1.0);             //33
-     */
 	return CMatrix(1.0 - (yy + zz),  //00
                    xy - wz,          //01
                    xz + wy,          //02
@@ -587,10 +569,7 @@ CQuaternion::getMatrix4x4() const
 
 
 CQuaternion &
-CQuaternion::setMatrix4x4(const CMatrix &m)
-//
-////////////////////////////////////////////////////////////////////////
-{
+CQuaternion::setMatrix4x4(const CMatrix &m) {
     int i, j, k;
     
     // First, find largest diagonal in matrix:
@@ -611,26 +590,16 @@ CQuaternion::setMatrix4x4(const CMatrix &m)
         value_[3] = sqrt(m(0,0)+m(1,1)+m(2,2)+m(3,3))/2.0;
         
         // And compute other values:
-        //value_[0] = (m(1,2)-m(2,1))/(4*value_[3]);
-        //value_[1] = (m(2,0)-m(0,2))/(4*value_[3]);
-        //value_[2] = (m(0,1)-m(1,0))/(4*value_[3]);
-        // And compute other values:
         value_[0] = (m(2,1)-m(1,2))/(4*value_[3]);
         value_[1] = (m(0,2)-m(2,0))/(4*value_[3]);
         value_[2] = (m(1,0)-m(0,1))/(4*value_[3]);
     }
     else {
         // Compute x, y, or z first:
-        //j = (i+1)%3; k = (i+2)%3;
         j = (i+2)%3; k = (i+1)%3;
         
         // Compute first value:
         value_[i] = sqrt(m(i,i)-m(j,j)-m(k,k)+m(3,3))/2.0;
-        
-        // And the others:
-        //value_[j] = (m(j,i)+m(i,j))/(4*value_[i]);
-        //value_[k] = (m(k,i)+m(i,k))/(4*value_[i]);
-        //value_[3] = (m(k,j)-m(j,k))/(4*value_[i]);
         
         // And the others:
         value_[j] = (m(i,j)+m(j,i))/(4*value_[i]);

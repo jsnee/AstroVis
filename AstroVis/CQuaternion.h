@@ -1,8 +1,6 @@
 #ifndef CQuaternion_H
 #define CQuaternion_H
 
-
-// includes
 #include "CMatrix.h"
 
 class CQuaternion
@@ -205,4 +203,4 @@ public:
     
 };
 
-#endif // CQuaternion_H
+#endif

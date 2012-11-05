@@ -98,7 +98,6 @@ CVector CArcBall::convertMouseToSphere(CPosition vec2Mouse)
 		// compute the z-value of the unit sphere
 		vec3BallMouse[2] = sqrt(1.0 - dDragRadius);
     }
-	//vec3BallMouse.normalize();
     return (vec3BallMouse);
 }
 
@@ -128,9 +127,7 @@ void CArcBall::reset()
 void CArcBall::rotate90()
 {
 	m_bDragging = false;
-    //m_quatDown.set(0.0, 0.0, 0.0, 1.0);
 	m_quatDown.set(0.0, 0.8, 0.0, 1.0);
-    //m_quatNow.set(0.0, 0.0, 0.0, 1.0);
 	m_quatNow.set(0.0, 0.8, 0.0, 1.0);
 	m_vec2Now  = m_vec2Center;
 	m_vec2Down = m_vec2Center;

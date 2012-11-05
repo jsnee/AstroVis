@@ -3,8 +3,8 @@
 #define GLOBAL_H
 
 
-#include <stdio.h>   /* printf() */
-#include <stdlib.h>  /* exit() */
+#include <stdio.h>
+#include <stdlib.h>
 #ifdef _WIN32
 #define M_PI 3.1415926535897932384626433832795
 #define M_SQRT2 1.4142135623730950488016887242097
@@ -40,5 +40,5 @@ inline int ROUND( double x ) {
 }
 
 
-#endif /* GLOBAL_H */
+#endif
 

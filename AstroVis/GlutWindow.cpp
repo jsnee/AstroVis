@@ -14,15 +14,14 @@
 
 #define ZOOM_MIN (0.05)
 #define ZOOM_MAX (10.0)
-//#define DISABLE_DRAGGING
 
 Camera *camera = 0;
 int isStereo = false;
 float stereoDistance = 0.25;
 int stereoSwitch = false;
 
-CGlutWindow::CGlutWindow(void)
-{
+CGlutWindow::CGlutWindow(void) {
+    
 	m_pCameraArcball = new CArcBall();
 	m_pLightArcball = new CArcBall();
     
@@ -52,8 +51,8 @@ CGlutWindow::CGlutWindow(void)
 	initializeGL();
 }
 
-CGlutWindow::~CGlutWindow(void)
-{
+CGlutWindow::~CGlutWindow(void) {
+    
 	if (NULL != m_pCameraArcball) delete m_pCameraArcball;
 	if (NULL != m_pLightArcball)  delete m_pLightArcball;
 }
@@ -61,7 +60,7 @@ CGlutWindow::~CGlutWindow(void)
 
 void CGlutWindow::renderFrame() {
     
-	if (stereoSwitch != isStereo){
+	if (stereoSwitch != isStereo) {
 		int w = glutGet( GLUT_WINDOW_WIDTH );
 		int h = glutGet( GLUT_WINDOW_HEIGHT );
 		resize(w,h);
@@ -146,10 +145,11 @@ void CGlutWindow::resize(int width, int height) {
     
 }
 
-void CGlutWindow::keyEvent(unsigned char key,int x,int y){
+void CGlutWindow::keyEvent(unsigned char key,int x,int y) {
+    
 }
 
-void CGlutWindow::mouseButtonEvent(int button, int state,int x,int y){
+void CGlutWindow::mouseButtonEvent(int button, int state,int x,int y) {
     
 	if ((false == m_bDragging) && (false == m_bZooming) && (false == m_bRotating)) {
 		if (handleButtonEvent(button, state,x,y)) {
@@ -235,9 +235,8 @@ void CGlutWindow::mouseButtonEvent(int button, int state,int x,int y){
 	}
 }
 
-void CGlutWindow::mouseMoveEvent(int x,int y){
+void CGlutWindow::mouseMoveEvent(int x,int y) {
     
-	//if ((false == m_bDragging) && (false == m_bZooming) && (false == m_bRotating) && (m_bExternalMouseHandling) {
 	if (m_bExternalMouseHandling) {
 		if (handleMoveEvent(x,y)) {
 			glutPostRedisplay();
@@ -290,54 +289,15 @@ void CGlutWindow::mouseMoveEvent(int x,int y){
 	m_vecMouseDown = pos;
 }
 
-void CGlutWindow::idle(){
-    /*
-     __time64_t ltime;
-     struct __timeb64 tstruct;
-     
-     static bool bFirstTime = true;
-     static long nStartMilliSeconds;
-     static long nMilliSeconds = 0;
-     static long nStartCount   = 0;
-     
-     if (bFirstTime) {
-     _time64( &ltime );
-     nStartMilliSeconds = (unsigned long) ltime;
-     nStartMilliSeconds *= 1000;
-     _ftime64( &tstruct );
-     nStartMilliSeconds += tstruct.millitm;        
-     bFirstTime = false;
-     nStartCount = nStartMilliSeconds;
-     }
-     
-	 _time64( &ltime );
-     nMilliSeconds = (unsigned long) ltime;
-     nMilliSeconds *= 1000;
-     _ftime64( &tstruct );
-     nMilliSeconds += tstruct.millitm;        
-     bFirstTime = false;
-     
-     nMilliSeconds -= nStartMilliSeconds;
-     //printf( "Plus milliseconds:%u\n",nMilliSeconds-nStartCount);
-     
-     static int nFrameCount = 0;
-     
-     nFrameCount++;
-     if (nFrameCount > 10) {
-     double dFramesPerSecond = double(nFrameCount*1000)/double(nMilliSeconds-nStartCount);
-     printf( "fps:%f\n",dFramesPerSecond);
-     nFrameCount = 0;
-     nStartCount = nMilliSeconds;
-     }
-     */
+void CGlutWindow::idle() {
+
 	if ( glutGetWindow() != main_window )
 		glutSetWindow(main_window);
 	
 	glutPostRedisplay();
 }
 
-void CGlutWindow::initializeGL()
-{
+void CGlutWindow::initializeGL() {
     GLfloat ambient[] =
 	{0.4f, 0.4f, 0.4f, 1.0f};
     GLfloat diffuse[] =
@@ -366,7 +326,6 @@ void CGlutWindow::initializeGL()
     
     /* Select Color and Projection*/
     glClearColor(0.0, 0.0, 0.0, 0.0);
-    //glColor3f(1.0, 1.0, 1.0);
     glShadeModel(GL_SMOOTH);
 	
 	
@@ -374,8 +333,7 @@ void CGlutWindow::initializeGL()
 
 
 void CGlutWindow::renderGeometry() {
-    
-    //cout<<"Glutwindow"<<endl;
+
 }
 
 void CGlutWindow::displayTF() {

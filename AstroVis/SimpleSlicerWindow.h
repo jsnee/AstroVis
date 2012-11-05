@@ -1,6 +1,7 @@
 #pragma once
 #include "GlutCgWindow.h"
 #include "globaldefs.h"
+#include <string>
 
 class CTransferFunction;
 
@@ -25,6 +26,7 @@ public:
 	void cgRenderGeometry();
 	void cgDisplayTF();
 	void drawString(char *s);
+    void drawStrings(std::string s);
     
 	virtual bool handleButtonEvent(int button, int state, int x, int y);
 	virtual bool handleMoveEvent(int x, int y);

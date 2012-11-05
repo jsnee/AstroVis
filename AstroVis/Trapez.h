@@ -45,12 +45,6 @@ protected:
 	CVector   m_color;
     
 private:
-	//  1 = Punkt 0
-	//  2 = Punkt 1
-	//  4 = Punkt 2
-	//  8 = Punkt 3
-	// 16 = LINIEN
-	// 32 = 
 	typedef enum {
 		NO_INTERACTION         = 0,                   
 		MOVE_0                 = 1,

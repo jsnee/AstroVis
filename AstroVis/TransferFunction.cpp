@@ -16,8 +16,7 @@ using std::ifstream;
 #define MARGIN_RIGHT (4)
 #define MARGIN_BOTTOM (32)
 
-CTransferFunction::CTransferFunction(char *p,int start,int mid1,int mid2,int end,int height) 
-{
+CTransferFunction::CTransferFunction(char *p,int start,int mid1,int mid2,int end,int height) {
 	name = p;
 	m_nNumTrapezoids = 1;
 	m_nTexId = 0;
@@ -64,8 +63,7 @@ CTransferFunction::~CTransferFunction()
     
 }
 
-void CTransferFunction::render(int offset, int id) 
-{
+void CTransferFunction::render(int offset, int id) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
@@ -180,8 +178,6 @@ bool CTransferFunction::handleMoveEvent(int x, int y) {
 		}
 	}
 	return true;
-	
-	//return false;
 }
 
 
@@ -230,8 +226,7 @@ void CTransferFunction::initTexture() {
 }
 
 
-void CTransferFunction::updateColorTable(int nStart, int nEnd)
-{
+void CTransferFunction::updateColorTable(int nStart, int nEnd) {
 	if (nStart < 0) nStart = 0;
 	if (nEnd < 0) return;
 	if (nStart > TF_TABLE_SIZE) return;
@@ -273,15 +268,11 @@ void CTransferFunction::updateColorTable(int nStart, int nEnd)
 		dGreen /= dAlphaSum;
 		dBlue  /= dAlphaSum;
 		m_pColorTable[nIndex++] = (unsigned char) r[visibleSteps];
-        //m_pColorTable[nIndex++] = (dRed      * 255.0);
 		m_pColorTable[nIndex++] = (unsigned char) g[visibleSteps];
-        //m_pColorTable[nIndex++] = (dGreen    * 255.0);
 		m_pColorTable[nIndex++] = (unsigned char) b[visibleSteps];
-        //m_pColorTable[nIndex++] = (dBlue     * 255.0);
 		m_pColorTable[nIndex++] = (unsigned char) (dAlphaMax * 255.0);
 	}
-	
-	//assert(m_nTexId != 0);
+    
 	glBindTexture(GL_TEXTURE_1D,m_nTexId);
     
 	// set the texture parameters

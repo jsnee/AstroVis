@@ -35,7 +35,6 @@ int main(int argc, char* argv[])
 	GLUI_Rollout *slitview_panel;
 	GLUI_RadioGroup *radio;
 	GLUI_Checkbox *check;
-    GLUI_Checkbox *check2;
 	GLUI_Spinner *spin;
 	
 	//window and function set-up
@@ -49,8 +48,6 @@ int main(int argc, char* argv[])
     glutKeyboardFunc(keyboard);
     glutMouseFunc(mouse);
     glutMotionFunc(move);
-    
-    printf(getRoot("/Desktop/data/shaders/fp_emis_abs_gradlightPhong.cg\n"));
     
 	//create glui window
 	GLUI *glui = GLUI_Master.create_glui("Control Panel",0,0,0);

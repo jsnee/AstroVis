@@ -236,4 +236,4 @@ public:
     ) const;
 };
 
-#endif // CMatrix_H
+#endif

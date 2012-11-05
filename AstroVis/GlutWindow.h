@@ -2,7 +2,6 @@
 
 #include "CVector.h"
 #include "CPosition.h"
-//#include <windows.h>
 
 class CArcBall;
 
