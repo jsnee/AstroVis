@@ -11,7 +11,7 @@ extern int scaleColorMap;
 extern int showVol1;
 extern int showVol2;
 extern int m_nMode;
-extern int filter[5];
+extern int filter[12];
 extern int generateFile;
 
 extern int Vol1Slit[6];

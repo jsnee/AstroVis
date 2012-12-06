@@ -29,8 +29,8 @@ int showVol2 = 0;
 int m_nMode = 0;
 int scaleColorMap = 1;
 int scaleColorMapC = 1;
-int filter[5] = {1,1,1,0,0};
-int filterC[5] = {1,1,1,0,0};
+int filter[12] = {1,1,1,1,1,1,1,1,1,1,1,1};
+int filterC[12] = {1,1,1,1,1,1,1,1,1,1,1,1};
 int generateFile = 0;
 
 int Vol1Slit[6] = {1,1,1,1,1,1};
@@ -69,7 +69,17 @@ int blobID[6][8][256];
 int *pMask;
 int *pMask1;
 int *pMask2;
-int maskCount[5] = { 0, 0, 0, 0, 0 };
+int *pMask3;
+int *pMask4;
+int *pMask5;
+int *pMask6;
+int *pMask7;
+int *pMask8;
+int *pMask9;
+int *pMask10;
+int *pMask11;
+int *pMask12;
+int maskCount[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 
 CSimpleSlicerWindow::CSimpleSlicerWindow()
@@ -415,6 +425,7 @@ void CSimpleSlicerWindow::loadTex1() {
 		}
         
 		delete [] pVolume;
+        generateMask();
 	}
 	//ANY OTHER PASS
 	if(! initialLoad1){
@@ -922,7 +933,6 @@ CSimpleSlicerWindow::cgRenderGeometry() {
             filterC[i] = filter[i];
         }
         loadTextures();
-        generateMask();
     }
     
     
@@ -1431,38 +1441,37 @@ bool CSimpleSlicerWindow::createPrograms()
 
 void CSimpleSlicerWindow::filterData1(unsigned char * ptr) {
     int i, j, k;
-    int num[5] = { 0, 0, 0, 0, 0 };
-    bool done[5] = { false, false, false, false, false };
+    int num[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    bool done = false;
     //cout << "testing..... " << mask[0] << endl;
     
     for(i=0; i<ZMAX; i++){
         for(j=0; j<YMAX; j++){
             for(k=0; k<XMAX; k++){
                 int value = ptrVal(i, j, k);
+                if (value == 0) continue;
                 
-                int masks[5] = {pMask[num[0]], pMask1[num[1]], pMask2[num[2]], 0, 0};
+                int masks[12] = { pMask[num[0]], pMask1[num[1]], pMask2[num[2]], pMask3[num[3]], pMask4[num[4]], pMask5[num[5]], pMask6[num[6]], pMask7[num[7]], pMask8[num[8]], pMask9[num[9]], pMask10[num[10]], pMask11[num[11]] };
+                done = true;
                 
-                for (int h = 0; h < 3; h++) {
-                
+                for (int h = 0; h < 12; h++) {
+                    
                     if (value == masks[h] && filter[h] != 1) {
                         ptr[value] = (unsigned char) 0;
                         if (num[h] < (maskCount[h] - 1)) {
                             num[h]++;
                         }
-                        if (num[h] >= (maskCount[h] - 1)) {
-                            done[h] = true;
-                        }
-                        if (done[0] && done[1] && done[2] && done[3] && done[4]) {
-                            break;
-                        }
+                    }
+                    if (done && masks[h] != 0 && num[h] < (maskCount[h] - 1)) {
+                        done = false;
                     }
                 }
             }
-            if (done[0] && done[1] && done[2] && done[3] && done[4]) {
+            if (done) {
                 break;
             }
         }
-        if (done[0] && done[1] && done[2] && done[3] && done[4]) {
+        if (done) {
             break;
         }
     }
@@ -1517,27 +1526,42 @@ int* CSimpleSlicerWindow::getCoordinate(int pValue) {
 }
 
 void CSimpleSlicerWindow::generateMask() {
-    ofstream maskFile (getRoot("/Desktop/test2.txt"), ios::out | ios::app);
+    return;
+    ofstream tempFile (getRoot("/Desktop/temp.txt"), ios::out);
+    cout << "writing mask file" << endl;
     int count = 0;
-    maskFile.close();
-    maskFile << "abcdef\n";
-    while (maskFile.is_open()) {
+    while (tempFile.is_open()) {
+        cout << "here" << endl;
         for(int i=0; i<ZMAX; i++){
             for(int j=0; j<YMAX; j++){
                 for(int k=0; k<XMAX; k++){
-                    //pVolTemp[(i*YMAX*XMAX)+(j*XMAX)+k] = pVolume[(i*YMAX*XMAX)+(j*XMAX)+k];
                     if (slitNum(ptrVal(i, j, k)) != -1 && (int)pVolTemp[(i*YMAX*XMAX)+(j*XMAX)+k] != 0 && filterBotTail(ptrVal(i, j, k))) {
                         long toAdd = ptrVal(i, j, k);
-                        maskFile << toAdd << "\n";
+                        tempFile << toAdd << "\n";
                         count++;
                     }
                 }
             }
         }
-        maskFile.seekp(0, ios::beg);
-        maskFile << count << "\n";
-        maskFile.close();
+        tempFile.close();
     }
+    cout << "Wrote temp file, generating mask now" << endl;
+        
+       
+    ifstream readTemp (getRoot("/Desktop/temp.txt"), ios::in);
+    ofstream maskFile (getRoot("/Desktop/data/masks/mask3.txt"), ios::out);
+        string line;
+    maskFile << count << "\n";
+    while (maskFile.is_open()) {
+        for (int i = 0; i < count; i++) {
+            readTemp >> line;
+            maskFile << line << "\n";
+        }
+        maskFile.close();
+        readTemp.close();
+    }
+    remove(getRoot("/Desktop/temp.txt"));
+    cout << "done!" << endl;
     
 }
 
@@ -1545,7 +1569,8 @@ void CSimpleSlicerWindow::readMask() {
     int n;
     string line;
     int readNum;
-    ifstream maskFile (getRoot("/Desktop/test.txt"), ios::in);
+    ifstream maskFile (getRoot("/Desktop/data/masks/mask0.txt"), ios::in);
+    cout << "reading mask" << endl;
     if (maskFile.is_open()) {
         getline(maskFile, line);
         maskCount[0] = atoi(line.c_str());
@@ -1558,11 +1583,15 @@ void CSimpleSlicerWindow::readMask() {
             n++;
             
         }
+    } else {
+        pMask = new int[1];
+        pMask[0] = 0;
+        maskCount[0] = 1;
     }
     maskFile.close();
     
     n = 0;
-    ifstream maskFile1 (getRoot("/Desktop/test1.txt"), ios::in);
+    ifstream maskFile1 (getRoot("/Desktop/data/masks/mask1.txt"), ios::in);
     if (maskFile1.is_open()) {
         getline(maskFile1, line);
         maskCount[1] = atoi(line.c_str());
@@ -1575,11 +1604,15 @@ void CSimpleSlicerWindow::readMask() {
             n++;
             
         }
+    } else {
+        pMask1 = new int[1];
+        pMask1[0] = 0;
+        maskCount[1] = 1;
     }
     maskFile1.close();
     
     n = 0;
-    ifstream maskFile2 (getRoot("/Desktop/test2.txt"), ios::in);
+    ifstream maskFile2 (getRoot("/Desktop/data/masks/mask2.txt"), ios::in);
     if (maskFile2.is_open()) {
         getline(maskFile2, line);
         maskCount[2] = atoi(line.c_str());
@@ -1592,6 +1625,201 @@ void CSimpleSlicerWindow::readMask() {
             n++;
             
         }
+    } else {
+        pMask2 = new int[1];
+        pMask2[0] = 0;
+        maskCount[2] = 1;
     }
     maskFile2.close();
+    
+    
+    n = 0;
+    ifstream maskFile3 (getRoot("/Desktop/data/masks/mask3.txt"), ios::in);
+    if (maskFile3.is_open()) {
+        getline(maskFile3, line);
+        maskCount[3] = atoi(line.c_str());
+        pMask3 = new int[maskCount[3]];
+        n = 0;
+        while (maskFile3.good()) {
+            getline(maskFile3, line);
+            readNum = atoi(line.c_str());
+            pMask3[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask3 = new int[1];
+        pMask3[0] = 0;
+        maskCount[3] = 1;
+     }
+    maskFile3.close();
+    
+    n = 0;
+    ifstream maskFile4 (getRoot("/Desktop/data/masks/mask4.txt"), ios::in);
+    if (maskFile4.is_open()) {
+        getline(maskFile4, line);
+        maskCount[4] = atoi(line.c_str());
+        pMask4 = new int[maskCount[4]];
+        n = 0;
+        while (maskFile4.good()) {
+            getline(maskFile4, line);
+            readNum = atoi(line.c_str());
+            pMask4[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask4 = new int[1];
+        pMask4[0] = 0;
+        maskCount[4] = 1;
+     }
+    maskFile4.close();
+    
+    n = 0;
+    ifstream maskFile5 (getRoot("/Desktop/data/masks/mask5.txt"), ios::in);
+    if (maskFile5.is_open()) {
+        getline(maskFile5, line);
+        maskCount[5] = atoi(line.c_str());
+        pMask5 = new int[maskCount[5]];
+        n = 0;
+        while (maskFile5.good()) {
+            getline(maskFile5, line);
+            readNum = atoi(line.c_str());
+            pMask5[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask5 = new int[1];
+        pMask5[0] = 0;
+        maskCount[5] = 1;
+     }
+    maskFile5.close();
+    
+    n = 0;
+    ifstream maskFile6 (getRoot("/Desktop/data/masks/mask6.txt"), ios::in);
+    if (maskFile6.is_open()) {
+        getline(maskFile6, line);
+        maskCount[6] = atoi(line.c_str());
+        pMask6 = new int[maskCount[6]];
+        n = 0;
+        while (maskFile6.good()) {
+            getline(maskFile6, line);
+            readNum = atoi(line.c_str());
+            pMask6[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask6 = new int[1];
+        pMask6[0] = 0;
+        maskCount[6] = 1;
+     }
+    maskFile6.close();
+    
+    n = 0;
+    ifstream maskFile7 (getRoot("/Desktop/data/masks/mask7.txt"), ios::in);
+    if (maskFile7.is_open()) {
+        getline(maskFile7, line);
+        maskCount[7] = atoi(line.c_str());
+        pMask7 = new int[maskCount[7]];
+        n = 0;
+        while (maskFile7.good()) {
+            getline(maskFile7, line);
+            readNum = atoi(line.c_str());
+            pMask7[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask7 = new int[1];
+        pMask7[0] = 0;
+        maskCount[7] = 1;
+     }
+    maskFile7.close();
+    
+    n = 0;
+    ifstream maskFile8 (getRoot("/Desktop/data/masks/mask8.txt"), ios::in);
+    if (maskFile8.is_open()) {
+        getline(maskFile8, line);
+        maskCount[8] = atoi(line.c_str());
+        pMask8 = new int[maskCount[8]];
+        n = 0;
+        while (maskFile8.good()) {
+            getline(maskFile8, line);
+            readNum = atoi(line.c_str());
+            pMask8[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask8 = new int[1];
+        pMask8[0] = 0;
+        maskCount[8] = 1;
+     }
+    maskFile8.close();
+    
+    n = 0;
+    ifstream maskFile9 (getRoot("/Desktop/data/masks/mask9.txt"), ios::in);
+    if (maskFile9.is_open()) {
+        getline(maskFile9, line);
+        maskCount[9] = atoi(line.c_str());
+        pMask9 = new int[maskCount[9]];
+        n = 0;
+        while (maskFile9.good()) {
+            getline(maskFile9, line);
+            readNum = atoi(line.c_str());
+            pMask9[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask9 = new int[1];
+        pMask9[0] = 0;
+        maskCount[9] = 1;
+     }
+    maskFile2.close();
+    
+    n = 0;
+    ifstream maskFile10 (getRoot("/Desktop/data/masks/mask10.txt"), ios::in);
+    if (maskFile10.is_open()) {
+        getline(maskFile10, line);
+        maskCount[10] = atoi(line.c_str());
+        pMask10 = new int[maskCount[10]];
+        n = 0;
+        while (maskFile10.good()) {
+            getline(maskFile10, line);
+            readNum = atoi(line.c_str());
+            pMask10[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask10 = new int[1];
+        pMask10[0] = 0;
+        maskCount[10] = 1;
+     }
+    maskFile10.close();
+    
+    n = 0;
+    ifstream maskFile11 (getRoot("/Desktop/data/masks/mask11.txt"), ios::in);
+    if (maskFile11.is_open()) {
+        getline(maskFile11, line);
+        maskCount[11] = atoi(line.c_str());
+        pMask11 = new int[maskCount[11]];
+        n = 0;
+        while (maskFile11.good()) {
+            getline(maskFile11, line);
+            readNum = atoi(line.c_str());
+            pMask11[n] = readNum;
+            n++;
+            
+        }
+    } else {
+        pMask11 = new int[1];
+        pMask11[0] = 0;
+        maskCount[11] = 1;
+     }
+    maskFile11.close();
+     
 }

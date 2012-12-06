@@ -33,6 +33,7 @@ int main(int argc, char* argv[])
 	GLUI_Listbox *box;
     GLUI_Listbox *box2;
 	GLUI_Rollout *slitview_panel;
+    GLUI_Rollout *slitview_panel2;
 	GLUI_RadioGroup *radio;
 	GLUI_Checkbox *check;
     GLUI_Checkbox *check2;
@@ -154,16 +155,29 @@ int main(int argc, char* argv[])
 	check = glui->add_checkbox_to_panel(checkbox_panel3, "Slit 6", &Vol2Slit[5]);
     
 	//create Transfer Function Panel
-	GLUI_Panel *transfer_function_panel2 = glui->add_panel( "Transfer Function Mode" );
+	//GLUI_Panel *transfer_function_panel2 = glui->add_panel( "Transfer Function Mode" );
 	//add radio button group to panel
 	//radio = glui->add_radiogroup_to_panel(transfer_function_panel2, &m_nMode);
 	//glui->add_radiobutton_to_group( radio, "Emission-Absorbtion" );
 	//glui->add_radiobutton_to_group( radio, "Gradient Phong" );
 	//glui->add_radiobutton_to_group( radio, "Show Gradient" );
-    GLUI_Panel *checkbox_panel4 = glui->add_panel_to_panel(transfer_function_panel2, "Viewing Filters");
+    
+    //create slitview panel for group masking
+	slitview_panel2 = glui->add_rollout( "Mask Groups" , 0);
+    GLUI_Panel *checkbox_panel4 = glui->add_panel_to_panel(slitview_panel2, "Groups");
     check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 1", &filter[0]);
     check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 2", &filter[1]);
     check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 3", &filter[2]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 4", &filter[3]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 5", &filter[4]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 6", &filter[5]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 7", &filter[6]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 8", &filter[7]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 9", &filter[8]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 10", &filter[9]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 11", &filter[10]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 12", &filter[11]);
+    glui->add_column_to_panel(slitview_panel2);
 
 	//create Transfer Function Panel
 	GLUI_Panel *stereo_panel = glui->add_panel( "Stereoscopic" );
