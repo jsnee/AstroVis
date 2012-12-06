@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
 	GLUI_Rollout *slitview_panel;
 	GLUI_RadioGroup *radio;
 	GLUI_Checkbox *check;
+    GLUI_Checkbox *check2;
 	GLUI_Spinner *spin;
 	
 	//window and function set-up
@@ -155,10 +156,14 @@ int main(int argc, char* argv[])
 	//create Transfer Function Panel
 	GLUI_Panel *transfer_function_panel2 = glui->add_panel( "Transfer Function Mode" );
 	//add radio button group to panel
-	radio = glui->add_radiogroup_to_panel(transfer_function_panel2, &m_nMode);
-	glui->add_radiobutton_to_group( radio, "Emission-Absorbtion" );
-	glui->add_radiobutton_to_group( radio, "Gradient Phong" );
-	glui->add_radiobutton_to_group( radio, "Show Gradient" );
+	//radio = glui->add_radiogroup_to_panel(transfer_function_panel2, &m_nMode);
+	//glui->add_radiobutton_to_group( radio, "Emission-Absorbtion" );
+	//glui->add_radiobutton_to_group( radio, "Gradient Phong" );
+	//glui->add_radiobutton_to_group( radio, "Show Gradient" );
+    GLUI_Panel *checkbox_panel4 = glui->add_panel_to_panel(transfer_function_panel2, "Viewing Filters");
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 1", &filter[0]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 2", &filter[1]);
+    check2 = glui->add_checkbox_to_panel(checkbox_panel4, "Group 3", &filter[2]);
 
 	//create Transfer Function Panel
 	GLUI_Panel *stereo_panel = glui->add_panel( "Stereoscopic" );
@@ -175,6 +180,8 @@ int main(int argc, char* argv[])
     
 	GLUI_Master.set_glutIdleFunc(idle);
     
+    
+    
 	int width = glutGet( GLUT_WINDOW_WIDTH );
 	int height = glutGet( GLUT_WINDOW_HEIGHT );
 	camera = new Camera(
@@ -182,6 +189,7 @@ int main(int argc, char* argv[])
                         );
     
 	glutMainLoop();
+    
     
 	return 0;
 }

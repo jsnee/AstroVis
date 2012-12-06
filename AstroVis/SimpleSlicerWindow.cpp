@@ -29,6 +29,9 @@ int showVol2 = 0;
 int m_nMode = 0;
 int scaleColorMap = 1;
 int scaleColorMapC = 1;
+int filter[5] = {1,1,1,0,0};
+int filterC[5] = {1,1,1,0,0};
+int generateFile = 0;
 
 int Vol1Slit[6] = {1,1,1,1,1,1};
 int Vol2Slit[6] = {1,1,1,1,1,1};
@@ -63,6 +66,10 @@ unsigned char *pVolTemp3 = NULL;
 unsigned char *pVolTemp4 = NULL;
 int *input[6];
 int blobID[6][8][256];
+int *pMask;
+int *pMask1;
+int *pMask2;
+int maskCount[5] = { 0, 0, 0, 0, 0 };
 
 
 CSimpleSlicerWindow::CSimpleSlicerWindow()
@@ -103,6 +110,7 @@ CSimpleSlicerWindow::CSimpleSlicerWindow()
 	//initialize transfer functions with color map and trapazoid position
 	m_pTransferFunction   = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_12.ppm"),5,120,255,255,60);
     m_pTransferFunction1  = new CTransferFunction(getRoot("/Desktop/data/ColorMap1D_11.ppm"),50,120,255,255,20);
+    readMask();
     
 }
 
@@ -113,6 +121,7 @@ CSimpleSlicerWindow::~CSimpleSlicerWindow(void)
 
 // RATIO DATA
 void CSimpleSlicerWindow::loadTex1() {
+    
     
     cout << "inside LoadTex1" << endl;
 	int size = XMAX*YMAX*ZMAX;
@@ -138,7 +147,7 @@ void CSimpleSlicerWindow::loadTex1() {
                 file_in[5].open(getRoot(VOL1_SLIT6), ios::in | ios::binary);
                 break;
             case 1:
-                cout << "opening another " << endl;
+                cout << "opening another tex1" << endl;
                 file_in[0].open(getRoot(VOL2_SLIT1), ios::in | ios::binary);
                 file_in[1].open(getRoot(VOL2_SLIT2), ios::in | ios::binary);
                 file_in[2].open(getRoot(VOL2_SLIT3), ios::in | ios::binary);
@@ -378,6 +387,10 @@ void CSimpleSlicerWindow::loadTex1() {
 		for(k=0; k<6; k++)
 			file_in[k].close();
         
+        if (!initialLoad1) {
+            filterData1(pVolume);
+        }
+        
 		glGenTextures(2,m_pTextureids);
 		glBindTexture(GL_TEXTURE_3D,m_pTextureids[0]);
         
@@ -400,6 +413,7 @@ void CSimpleSlicerWindow::loadTex1() {
 				}
 			}
 		}
+        
 		delete [] pVolume;
 	}
 	//ANY OTHER PASS
@@ -445,6 +459,15 @@ void CSimpleSlicerWindow::loadTex1() {
 			}
 		}
         
+        filterData1(pVolume);
+        
+        for (int i = 0; i < (XMAX*YMAX*ZMAX); i++) {
+            if (pVolume[i] < 3 && pVolume[i] > 0) {
+                //cout << i << endl;
+                //pVolume[i] = 0;
+            }
+        }
+        
 		glBindTexture(GL_TEXTURE_3D,m_pTextureids[0]);
         
 		//======================== FILE READ IN =============================
@@ -462,7 +485,9 @@ void CSimpleSlicerWindow::loadTex1() {
         delete [] pVolume;
 	}
     
-	initialLoad1 = false;
+    
+    initialLoad1 = false;
+    
     
 }
 
@@ -493,7 +518,7 @@ void CSimpleSlicerWindow::loadTex2() {
                 file_in[5].open(getRoot(VOL1_SLIT6), ios::in | ios::binary);
                 break;
             case 1:
-                cout << "opening another " << endl;
+                cout << "opening another tex2" << endl;
                 file_in[0].open(getRoot(VOL2_SLIT1), ios::in | ios::binary);
                 file_in[1].open(getRoot(VOL2_SLIT2), ios::in | ios::binary);
                 file_in[2].open(getRoot(VOL2_SLIT3), ios::in | ios::binary);
@@ -795,6 +820,7 @@ void CSimpleSlicerWindow::loadTex2() {
 			}
 		}
         
+        
 		glBindTexture(GL_TEXTURE_3D,m_pTextureids[1]);
         
 		//======================== FILE READ IN =============================
@@ -814,8 +840,6 @@ void CSimpleSlicerWindow::loadTex2() {
 	initialLoad2 = false;
     
 }
-
-
 
 bool CSimpleSlicerWindow::loadTextures() {
 	loadTex1();
@@ -892,6 +916,15 @@ CSimpleSlicerWindow::cgRenderGeometry() {
         scaleColorMapC = scaleColorMap;
         m_pTransferFunction->updateColor();
     }
+    
+    if (filter[0] != filterC[0] || filter[1] != filterC[1] || filter[2] != filterC[2] || filter[3] != filterC[3] || filter[4] != filterC[4]) {
+        for (int i = 0; i < 6; i++) {
+            filterC[i] = filter[i];
+        }
+        loadTextures();
+        generateMask();
+    }
+    
     
 	//ASSIGN MIN AND MAX VALUES BASED ON CURRENT VOLUMES
 	if(vol_data1 == 0){
@@ -1394,4 +1427,171 @@ bool CSimpleSlicerWindow::createPrograms()
     }  
     
     return bOK;
+}
+
+void CSimpleSlicerWindow::filterData1(unsigned char * ptr) {
+    int i, j, k;
+    int num[5] = { 0, 0, 0, 0, 0 };
+    bool done[5] = { false, false, false, false, false };
+    //cout << "testing..... " << mask[0] << endl;
+    
+    for(i=0; i<ZMAX; i++){
+        for(j=0; j<YMAX; j++){
+            for(k=0; k<XMAX; k++){
+                int value = ptrVal(i, j, k);
+                
+                int masks[5] = {pMask[num[0]], pMask1[num[1]], pMask2[num[2]], 0, 0};
+                
+                for (int h = 0; h < 3; h++) {
+                
+                    if (value == masks[h] && filter[h] != 1) {
+                        ptr[value] = (unsigned char) 0;
+                        if (num[h] < (maskCount[h] - 1)) {
+                            num[h]++;
+                        }
+                        if (num[h] >= (maskCount[h] - 1)) {
+                            done[h] = true;
+                        }
+                        if (done[0] && done[1] && done[2] && done[3] && done[4]) {
+                            break;
+                        }
+                    }
+                }
+            }
+            if (done[0] && done[1] && done[2] && done[3] && done[4]) {
+                break;
+            }
+        }
+        if (done[0] && done[1] && done[2] && done[3] && done[4]) {
+            break;
+        }
+    }
+    
+}
+
+bool CSimpleSlicerWindow::filterBotTail(int pValue) {
+    bool result = true;
+    double radius = sqrt(((pow((double)getCoordinate(pValue)[0] - 250.0, 2) + pow((double)getCoordinate(pValue)[1] - 256.0, 2))));
+    
+    if (radius <= 50 || getCoordinate(pValue)[1] < 200) {
+        result = false;
+    }
+    return result;
+}
+
+int CSimpleSlicerWindow::ptrVal(int z, int y, int x) {
+    int result = ((z * YMAX * XMAX) + (y * XMAX) + x);
+    return result;
+}
+
+int CSimpleSlicerWindow::slitNum(int ptrID) {
+    int result = -1;
+    int zVal = (YMAX * XMAX);
+    
+    if (ptrID >= (9 * zVal)  && ptrID < (17 * zVal)) {
+        result = 0;
+    } else if (ptrID >= (17 * zVal) && ptrID < (25 * zVal)) {
+        result = 1;
+    } else if (ptrID >= (25 * zVal) && ptrID < (33 * zVal)) {
+        result = 2;
+    } else if (ptrID >= (33 * zVal) && ptrID < (41 * zVal)) {
+        result = 3;
+    } else if (ptrID >= (41 * zVal) && ptrID < (49 * zVal)) {
+        result = 4;
+    } else if (ptrID >= (49 * zVal) && ptrID < (57 * zVal)) {
+        result = 5;
+    }
+    
+    return result;
+}
+
+int* CSimpleSlicerWindow::getCoordinate(int pValue) {
+    int *result = new int[3];
+    memset(result, 0, sizeof(int) * 3);
+    int array[3];
+    array[0] = (pValue % (YMAX * XMAX)) % XMAX;
+    array[1] = ((pValue % (YMAX * XMAX)) - array[0]) / XMAX;
+    array[2] = pValue - array[1] - array[0];
+    result = array;
+    return result;
+}
+
+void CSimpleSlicerWindow::generateMask() {
+    ofstream maskFile (getRoot("/Desktop/test2.txt"), ios::out | ios::app);
+    int count = 0;
+    maskFile.close();
+    maskFile << "abcdef\n";
+    while (maskFile.is_open()) {
+        for(int i=0; i<ZMAX; i++){
+            for(int j=0; j<YMAX; j++){
+                for(int k=0; k<XMAX; k++){
+                    //pVolTemp[(i*YMAX*XMAX)+(j*XMAX)+k] = pVolume[(i*YMAX*XMAX)+(j*XMAX)+k];
+                    if (slitNum(ptrVal(i, j, k)) != -1 && (int)pVolTemp[(i*YMAX*XMAX)+(j*XMAX)+k] != 0 && filterBotTail(ptrVal(i, j, k))) {
+                        long toAdd = ptrVal(i, j, k);
+                        maskFile << toAdd << "\n";
+                        count++;
+                    }
+                }
+            }
+        }
+        maskFile.seekp(0, ios::beg);
+        maskFile << count << "\n";
+        maskFile.close();
+    }
+    
+}
+
+void CSimpleSlicerWindow::readMask() {
+    int n;
+    string line;
+    int readNum;
+    ifstream maskFile (getRoot("/Desktop/test.txt"), ios::in);
+    if (maskFile.is_open()) {
+        getline(maskFile, line);
+        maskCount[0] = atoi(line.c_str());
+        pMask = new int[maskCount[0]];
+        n = 0;
+        while (maskFile.good()) {
+            getline(maskFile, line);
+            readNum = atoi(line.c_str());
+            pMask[n] = readNum;
+            n++;
+            
+        }
+    }
+    maskFile.close();
+    
+    n = 0;
+    ifstream maskFile1 (getRoot("/Desktop/test1.txt"), ios::in);
+    if (maskFile1.is_open()) {
+        getline(maskFile1, line);
+        maskCount[1] = atoi(line.c_str());
+        pMask1 = new int[maskCount[1]];
+        n = 0;
+        while (maskFile1.good()) {
+            getline(maskFile1, line);
+            readNum = atoi(line.c_str());
+            pMask1[n] = readNum;
+            n++;
+            
+        }
+    }
+    maskFile1.close();
+    
+    n = 0;
+    ifstream maskFile2 (getRoot("/Desktop/test2.txt"), ios::in);
+    if (maskFile2.is_open()) {
+        getline(maskFile2, line);
+        maskCount[2] = atoi(line.c_str());
+        pMask2 = new int[maskCount[2]];
+        n = 0;
+        while (maskFile2.good()) {
+            getline(maskFile2, line);
+            readNum = atoi(line.c_str());
+            pMask2[n] = readNum;
+            n++;
+            
+        }
+    }
+    maskFile2.close();
 }

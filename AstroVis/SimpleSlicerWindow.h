@@ -52,5 +52,15 @@ protected:
 	void loadTex5();
 	void loadTex6();
 	bool createPrograms();
+    void filterData1(unsigned char * ptr);
+    bool filterBotTail(int pValue);
+    void generateMask();
+    void readMask();
+    
+public:
+    int ptrVal(int z, int y, int x);
+    int slitNum(int ptrID);
+    int* getCoordinate(int pValue);
+    
     
 };

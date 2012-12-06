@@ -146,7 +146,7 @@ void CGlutWindow::resize(int width, int height) {
 }
 
 void CGlutWindow::keyEvent(unsigned char key,int x,int y) {
-    
+    cout << key << endl;
 }
 
 void CGlutWindow::mouseButtonEvent(int button, int state,int x,int y) {
