@@ -23,6 +23,7 @@ static void dispCWD() {
     printf("CWD=%s\n", getcwd(NULL, 100) );
     char* result = (char*)getenv("SRCROOT");
     cout << result << endl;
+    //testing commits
 }
 
 
